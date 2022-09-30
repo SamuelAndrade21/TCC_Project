@@ -1,0 +1,15 @@
+
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+
+html,
+body,
+#root {
+background-color: #191B1A;
+color: white;
+}

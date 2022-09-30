@@ -1,0 +1,37 @@
+.navBar{
+    justify-content: flex-start;
+    margin: 50px;
+    margin-left: -10px;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+}
+
+a{
+    margin: 5px;
+    padding-left: 35px;
+    padding-top: 13px;
+}
+
+.btn_list{
+    height: 40px;
+    text-align: center;
+    cursor: pointer;
+    padding-right: 25px;
+    background-color: transparent;
+    width: 180px;
+    border-radius: 10px;
+    color: white;
+    border: transparent;
+}
+
+.btn_list:focus{
+    background-color: #27AE60;
+}
+
+
+hr{
+    width: 140px;
+    margin-left: 50px;
+    margin-top: 200px;
+}
