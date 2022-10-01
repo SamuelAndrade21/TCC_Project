@@ -1,10 +1,13 @@
 .navBar{
     justify-content: flex-start;
-    margin: 50px;
-    margin-left: -10px;
-    display: flex;
+    padding-top: 50px;
+    margin-top: 0;
+    margin-left: 10px;
+    height: 100vh;
     flex-direction: column;
     width: 250px;
+    box-shadow:1px 0px 15px 0px black;
+    z-index: 1;
 }
 
 a{
@@ -12,26 +15,26 @@ a{
     padding-left: 35px;
     padding-top: 13px;
 }
+.closemenu{
+    margin:10px;
+    display: flex;
+    justify-content: end;
+}
 
-.btn_list{
-    height: 40px;
+li{
+    align-items: center;
+    margin-left: 8px;
+    margin-top: 20px;
     text-align: center;
     cursor: pointer;
-    padding-right: 25px;
-    background-color: transparent;
-    width: 180px;
+    width: 230px;
     border-radius: 10px;
     color: white;
     border: transparent;
+    cursor: pointer;
 }
 
-.btn_list:focus{
+li:hover{
     background-color: #27AE60;
 }
 
-
-hr{
-    width: 140px;
-    margin-left: 50px;
-    margin-top: 200px;
-}

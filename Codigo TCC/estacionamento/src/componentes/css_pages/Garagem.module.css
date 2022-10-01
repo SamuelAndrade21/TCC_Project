@@ -1,3 +1,9 @@
-.activeGarage{
-    background-color: #27AE60;
+.bodyGarage{
+   justify-content: center;
+    z-index: 0;
+    background-color: red;
+    width: 100vw;
+    text-align: center;
 }
+
+

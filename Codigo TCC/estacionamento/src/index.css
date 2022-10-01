@@ -12,4 +12,7 @@ body,
 #root {
 background-color: #191B1A;
 color: white;
+display: inline;
 }
+
+
