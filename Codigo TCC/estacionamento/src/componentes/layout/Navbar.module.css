@@ -1,8 +1,8 @@
 .navBar{
     justify-content: flex-start;
-    padding-top: 50px;
+    padding-top: 0px;
     margin-top: 0;
-    margin-left: 10px;
+    margin-left: 0px;
     height: 100vh;
     flex-direction: column;
     width: 250px;

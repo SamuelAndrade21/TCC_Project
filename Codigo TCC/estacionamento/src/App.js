@@ -7,19 +7,8 @@ import Footer from './componentes/layout/Footer';
 
 function App() {
   return (
-    
-   <Router>
-    <Navbar/>
-
-    <Routes>
-    <Route exact path="/" element={<Garagem/>}/>
-    <Route path="/clientes" element = {<Clientes/>}/>
-    <Route path="/relatorios" element = {<Relatorios/>}/>    
-    </Routes>
-    <Footer />
-   </Router>
-   
-  );
+    <Navbar></Navbar>
+  )
 }
 
 export default App;

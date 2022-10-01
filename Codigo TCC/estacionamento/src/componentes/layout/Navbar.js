@@ -27,9 +27,7 @@ const Navbar = () => {
     //criacao do hook e state iniciall
     const [menuCollapse, setMenuCollapse] = useState(false)
 
-    //create a custom function that will change menucollapse state from false to true and true to false
   const menuIconClick = () => {
-    //condition checking to change state from true to false and vice versa
     menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
   };
 
@@ -37,7 +35,7 @@ const Navbar = () => {
     <>
       <div  >
           {}
-        <ProSidebar collapsed={menuCollapse}>
+        <ProSidebar className={styles.navBar} collapsed={menuCollapse}>
           <SidebarHeader >
           <div className="logotext">
               
