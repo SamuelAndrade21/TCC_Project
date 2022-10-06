@@ -7,7 +7,7 @@ import Footer from './componentes/layout/Footer';
 
 function App() {
   return (
-    <Navbar></Navbar>
+    <Navbar>Padilia Gostosão</Navbar>
   )
 }
 
