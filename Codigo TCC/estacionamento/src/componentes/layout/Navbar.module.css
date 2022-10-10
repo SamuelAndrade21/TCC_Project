@@ -1,3 +1,7 @@
+.corpo{
+    position: relative;
+}
+
 .navBar{
     justify-content: flex-start;
     padding-top: 0px;
@@ -8,6 +12,9 @@
     width: 250px;
     box-shadow:1px 0px 15px 0px black;
     z-index: 1;
+    display: inline-block;
+    position: absolute;
+   
 }
 
 a{
@@ -27,10 +34,9 @@ li{
     margin-top: 20px;
     text-align: center;
     cursor: pointer;
-    width: 230px;
+    width: 250px;
     border-radius: 10px;
     color: white;
-    border: transparent;
     cursor: pointer;
 }
 
@@ -38,3 +44,6 @@ li:hover{
     background-color: #27AE60;
 }
 
+.Icons{
+    font-size: 50px;
+}

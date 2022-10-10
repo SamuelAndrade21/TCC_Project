@@ -1,9 +1,28 @@
+/* Criação do estilo da página da Garagem, com algumas diferenças */
+/* A altura da página foi alterado e a largura foi aumentada */
 .bodyGarage{
    justify-content: center;
-    z-index: 0;
-    background-color: red;
-    width: 100vw;
+    width: 780px;
+    height: 680px;
+    text-align: center;
+    margin-left: 300px;
+    margin-top: 10px;
+    background-color: #B3B3B3;
+    border-radius: 12px;
+    padding: 5px;
+}
+
+#bodyOffice{
+    width: 113px;
+    height: 132px;
+    background-color: #191B1A;
+    margin: 10px;
+    border-radius: 10px;
+    display: flex;
+    line-height: 130px;
+    justify-content: center;
     text-align: center;
 }
+
 
 

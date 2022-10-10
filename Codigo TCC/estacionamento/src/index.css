@@ -12,11 +12,14 @@ body,
 #root {
 background-color: #191B1A;
 color: white;
-display: inline;
+display: flex;
 }
 
 .navBody{
   height: 100vh;
 }
+
+
+
 
 

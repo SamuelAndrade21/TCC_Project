@@ -1,6 +1,9 @@
-import React, { useState } from "react";
-//Import do use state
+//impor dos links
+import { Link } from 'react-router-dom';
 
+
+//Import do use state
+import React, { useState } from "react";
 
 //import dos componentes do sidebar
 import {
@@ -13,18 +16,17 @@ import {
 } from "react-pro-sidebar";
 
 //import dos icons 
-import { FaList, FaChartBar,FaBars,FaCar,FaTimes } from "react-icons/fa";
-import { FiHome, FiLogOut, FiArrowLeftCircle, FiArrowRightCircle } from "react-icons/fi";
-import { RiPencilLine } from "react-icons/ri";
+import { FaChartBar,FaBars,FaCar,FaTimes,FaUsers } from "react-icons/fa";
+import { FiHome, FiLogOut} from "react-icons/fi";
 import { BiCog } from "react-icons/bi";
 
-
+//import das páginas
 import "react-pro-sidebar/dist/css/styles.css";
-import styles from './Navbar.module.css'
+import styles from './Navbar.module.css';
 
 const Navbar = () => {
   
-    //criacao do hook e state iniciall
+    //criacao do hook e state inicial
     const [menuCollapse, setMenuCollapse] = useState(false)
 
   const menuIconClick = () => {
@@ -33,7 +35,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div  >
+      <div className={styles.corpo} >
           {}
         <ProSidebar className={styles.navBar} collapsed={menuCollapse}>
           <SidebarHeader >
@@ -52,17 +54,33 @@ const Navbar = () => {
           </SidebarHeader>
           <SidebarContent >
             <Menu >
-              <MenuItem active={true} icon={<FiHome />}>
-                Pagina Inicial
+                  
+              <MenuItem  active={true} icon={<FiHome fontSize= "17px" />}>
+              <Link to={"/"}>Página Inicial</Link>
               </MenuItem>
-              <MenuItem  icon={<FaCar />}>Garagem</MenuItem>
-              <MenuItem icon={<FaChartBar />}>Relatorios</MenuItem>
-              <MenuItem icon={<BiCog />}>Configuracoes</MenuItem>
+
+              
+              <MenuItem icon={<FaCar fontSize= "17px"  />}>
+               <Link to={"/Garagem"}>Garagem</Link> 
+              </MenuItem>
+
+              <MenuItem icon={<FaChartBar fontSize= "17px"  />}>
+               <Link to={"/Relatorios"}>Relatórios</Link> 
+              </MenuItem>
+
+              <MenuItem icon={<FaUsers fontSize= "17px"  />}>
+              <Link to={"/Clientes"}>Clientes</Link> 
+              </MenuItem>
+
+              <MenuItem icon={<BiCog fontSize= "17px"  />}>
+               Configurações
+              </MenuItem>
+
             </Menu>
           </SidebarContent>
           <SidebarFooter>
             <Menu>
-              <MenuItem icon={<FiLogOut />}>Sair</MenuItem>
+              <MenuItem icon={<FiLogOut fontSize= "17px"  />}>Sair</MenuItem>
             </Menu>
           </SidebarFooter>
         </ProSidebar>
