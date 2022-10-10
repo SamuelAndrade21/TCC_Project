@@ -1,3 +1,6 @@
+import {createGlobalStyle} from "styled-components";
+
+const Global = createGlobalStyle `
 
 *{
   margin: 0px;
@@ -18,6 +21,15 @@ display: flex;
 .navBody{
   height: 100vh;
 }
+
+ul {
+  list-style: none;
+}
+`;  
+
+export default Global;
+
+
 
 
 
