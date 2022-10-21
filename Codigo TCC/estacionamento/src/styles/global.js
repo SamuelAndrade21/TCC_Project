@@ -24,6 +24,13 @@ display: flex;
 
 ul {
   list-style: none;
+  padding-left: 0;
+} 
+
+button, input {
+    border: 0; 
+    background: none; 
+    
 }
 `;  
 
