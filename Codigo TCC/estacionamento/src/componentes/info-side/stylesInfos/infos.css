@@ -1,0 +1,23 @@
+.bodyInfo{
+    position: absolute;
+    top: 0%;
+    left:1158px;
+    background: rgb(146,213,255);
+    background: linear-gradient(90deg, rgba(146,213,255,0.004639355742296902) 0%, rgba(58,59,59,1) 100%);
+    width: 550px;
+    box-shadow:1px 0px 19px 0px black;
+    height: 100vh;
+}
+
+.divCar{
+    background-color:#B3B3B3;
+    width: 550px;
+    height: 185px;
+    
+}
+
+.divCar img{
+    width: 310;
+    height: 150px;
+    margin-left: 120px;
+}

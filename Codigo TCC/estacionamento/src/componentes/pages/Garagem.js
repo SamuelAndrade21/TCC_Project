@@ -1,5 +1,6 @@
 import styles from '../css_pages/Garagem.module.css';
-
+import Vagas from '../Page_vagas-geais/vagas_gestao';
+import InfosCar from '../info-side/InfosCar';
 function Garagem(){
     
   
@@ -7,10 +8,11 @@ function Garagem(){
      <div>
      <div className= {styles.bodyGarage}>
        <div id ={styles.bodyOffice}><p>Office</p></div>
-       {/* Começando criação dos elementos e lógica de botões */}
-       {/* Trabalhar com flex-box na criação das vagas */}
-       {/* Implementação dos estilos dos botões e em sequencia criação da lógica (Tudo nessa página, ou em alguma externa!) */}
+      <Vagas/>
     </div>
+    <div>
+     <InfosCar/>
+     </div>
     </div>   
     )
 }
