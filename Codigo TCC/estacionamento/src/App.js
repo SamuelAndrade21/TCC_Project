@@ -5,13 +5,12 @@ import Garagem from './componentes/pages/Garagem';
 import Navbar from './componentes/layout/Navbar';
 import Footer from './componentes/layout/Footer';
 import Pagina_inicial from './componentes/pages/Pagina_Incial';
-import GlobalStyles from './styles/global';
 function App() {
 
 
   return (
    
-    <div>
+    <div >
 
     <Router>
     

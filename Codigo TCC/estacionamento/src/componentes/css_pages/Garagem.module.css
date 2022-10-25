@@ -2,14 +2,16 @@
 /* A altura da página foi alterado e a largura foi aumentada */
 .bodyGarage{
    justify-content: center;
-    width: 780px;
-    height: 680px;
+    width: 810px;
+    height: 700px;
     text-align: center;
     margin-left: 300px;
-    margin-top: 10px;
     background-color: #B3B3B3;
     border-radius: 12px;
+    top: 10px;
     padding: 5px;
+    position: absolute;
+    z-index: 3;
 }
 
 #bodyOffice{

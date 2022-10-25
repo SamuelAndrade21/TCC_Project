@@ -1,10 +1,19 @@
 #root {
     background-color: #191B1A;
     color: white;
-    display: inline;
+    overflow: hidden;
+    width: 100vw;
     display: flex;
+    font-family: 'Josefin Sans';
+    padding: 0px;
+    margin: 0px;
     }
     
-    .navBody{
-    display: inline;
+    html,body{
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        width: 100vw;
     }
+    
+ 
