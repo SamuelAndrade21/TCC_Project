@@ -2,5 +2,11 @@
     justify-content: center;
     text-align: center; 
     margin-top: 5px;
+    text-align: center; 
 
+
+} 
+
+.permissions {
+    margin-left: 5px;
 }
