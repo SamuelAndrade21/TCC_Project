@@ -1,5 +1,7 @@
 /* Criação do estilo da página da Garagem, com algumas diferenças */
 /* A altura da página foi alterado e a largura foi aumentada */
+
+/*Style e medida da areas de garagem*/
 .bodyGarage{
    justify-content: center;
     width: 810px;
@@ -14,6 +16,7 @@
     z-index: 3;
 }
 
+/*Style do corpo do office*/
 #bodyOffice{
     width: 113px;
     height: 132px;

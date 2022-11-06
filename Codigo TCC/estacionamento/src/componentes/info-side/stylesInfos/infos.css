@@ -9,11 +9,11 @@
     height: 100vh;
 }
 
+/*background da imagem do carro*/
 .divCar{
     background-color:#B3B3B3;
     width: 550px;
-    height: 185px;
-    
+    height: 140px;   
 }
 
 .divCar img{
@@ -22,32 +22,34 @@
     margin-left: 120px;
 }
 
+/*Style das infrmacoes do carro*/
 .infoCar{
     box-sizing: border-box;
     display: inline-block;
     width: 40%;
     margin-left: 25px;
-    margin-top: 3%;
+    margin-top: 0%;
     overflow: hidden;
     padding: 10px;
 }
 
+/*Style das lista de informacos do carro*/
 .reviewLista li:hover{
     background-color: transparent;
     cursor:auto;
 }
   
 .reviewLista li:nth-child(1n) {
-    text-align: center;  
+    text-align: left;  
 }
 
 .reviewLista li:nth-child(2n) {
-    text-align: center;  
+    text-align: right;  
 }
   
 #titleCar{
     margin: 0;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .firstinfos{
@@ -55,6 +57,7 @@
 }
 
 .reviewInfoCar{
-    margin-top: 50px;
+    margin-top: 25px;
 }
+
 

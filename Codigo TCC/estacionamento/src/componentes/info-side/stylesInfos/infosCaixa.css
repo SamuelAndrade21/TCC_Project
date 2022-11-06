@@ -1,0 +1,110 @@
+/*Style das infos do caixa e do icon*/
+.bodyCaixa{
+    height: 50%;
+    width: 100%; 
+    position: relative;  
+}
+
+.userInfo{
+    width: 100%;
+    height: 32%;
+    background: linear-gradient(270deg, #686969 0%, rgba(58, 59, 59, 0) 100%);
+    padding: 8px;
+}
+
+.iconCaixa{
+    border-radius: 18px;
+    height: 110px;
+    width: 110px;
+    margin: 12px;
+    background-color:#27AE60;
+}
+
+#imgCaixa{
+    height: 90px;
+    width: 90px;
+    color: white;
+    margin: 9px;
+}
+
+
+/*Styles das infos do Funcionario*/
+.valuesUser{
+    position: absolute;
+    margin-left: 100px;
+    list-style: none;    
+}
+
+.valuesUser li{
+    text-align: start;
+    align-items: flex-start;
+    cursor: Inherited;
+}
+
+.valuesUser li:hover{
+    background-color: transparent;
+}
+
+.valuesUser span{
+    margin-left: 10px;
+}
+
+.infosComprovante p{
+    text-align: center;
+    margin-top: 40px;
+}
+
+hr{
+    width: 450px;
+}
+
+/*Styles das notas do caixa*/
+.infoCaixa{
+    box-sizing: border-box;
+    display: inline-block;
+    width: 40%;
+    margin-left: 25px;
+    margin-top: 3%;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.infoCaixaLista li:hover{
+    background-color: transparent;
+    cursor:auto;
+}
+  
+.infoCaixaLista li:nth-child(1n) {
+    text-align: left;  
+}
+
+.infoCaixaLista li:nth-child(2n) {
+    text-align: right;  
+}
+
+#phone{
+    margin-top: 0px;
+}
+
+
+/*Style imagem printer*/
+
+#imgPrinter{
+    padding: 2px;
+}
+
+.btnPrintˋ{
+    border-radius: 5px;
+}
+
+button{
+    border-radius: 6px;
+    padding: 10px;
+    align-items: center;
+    background-color: black;
+    cursor: pointer;
+}
+
+.prnterBtn{
+    margin-left: 85%;
+}
