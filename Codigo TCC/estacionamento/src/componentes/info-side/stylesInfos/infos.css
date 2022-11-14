@@ -1,7 +1,7 @@
 .bodyInfo{
     position: absolute;
     top: 0%;
-    left:1158px;
+    left:1330px;
     background: rgb(146,213,255);
     background: linear-gradient(90deg, rgba(146,213,255,0.004639355742296902) 0%, rgba(58,59,59,1) 100%);
     width: 550px;
@@ -22,7 +22,7 @@
     margin-left: 120px;
 }
 
-/*Style das infrmacoes do carro*/
+/*Style das infrmações do carro*/
 .infoCar{
     box-sizing: border-box;
     display: inline-block;
@@ -33,7 +33,7 @@
     padding: 10px;
 }
 
-/*Style das lista de informacos do carro*/
+/*Style das lista de informacões do carro*/
 .reviewLista li:hover{
     background-color: transparent;
     cursor:auto;

@@ -51,7 +51,7 @@
 
 .infosComprovante p{
     text-align: center;
-    margin-top: 40px;
+    margin-top: 70px;
 }
 
 hr{
@@ -93,8 +93,15 @@ hr{
     padding: 2px;
 }
 
-.btnPrintˋ{
+.btnPrint{
+    border: 1px solid transparent;
     border-radius: 5px;
+    background-color: black;
+    padding: 8px;
+}
+
+.btnPrint:hover{
+    border:1px solid white ;
 }
 
 button{

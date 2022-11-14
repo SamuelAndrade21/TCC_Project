@@ -1,0 +1,20 @@
+.bodyControl{
+    position: relative;
+    top: 35%;
+}
+
+.bodyDisponiveis{
+    height: 76px;
+    background: linear-gradient(275.12deg, #686969 21.5%, rgba(104, 105, 105, 0.63) 53.24%, #686969 102.09%);
+    border-radius: 16px;
+    width: 270px;
+  
+    display: flex;
+}
+
+.iconParkingSize{
+    width: 63.23px;
+    height:63px;
+    margin: 5px auto;
+    margin-right: 190px;
+}

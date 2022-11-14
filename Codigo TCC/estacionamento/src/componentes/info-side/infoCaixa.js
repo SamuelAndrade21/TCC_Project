@@ -48,7 +48,7 @@ function  Caixa(){
             <hr></hr>
             </div>
             <div className='prnterBtn'>
-            <button className='btnPrint' type="button" onClick={Print}> <img id='imgPrinter' src={print}></img></button>
+            <button className="btnPrint" type="button" onClick={Print}> <img id='imgPrinter' src={print}></img></button>
             </div>
         </div>
         
