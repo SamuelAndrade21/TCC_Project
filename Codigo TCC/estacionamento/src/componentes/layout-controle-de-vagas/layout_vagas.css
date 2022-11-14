@@ -1,20 +1,80 @@
 .bodyControl{
     position: relative;
-    top: 35%;
-}
-
-.bodyDisponiveis{
-    height: 76px;
-    background: linear-gradient(275.12deg, #686969 21.5%, rgba(104, 105, 105, 0.63) 53.24%, #686969 102.09%);
-    border-radius: 16px;
-    width: 270px;
-  
+    top: 34%;
     display: flex;
 }
 
+.bodyDisponiveis{
+    height: 190px;
+    background: linear-gradient(275.12deg, #686969 21.5%, rgba(104, 105, 105, 0.63) 53.24%, #686969 102.09%);
+    border-radius: 16px;
+    width: 270px;
+    margin:4px;
+    display: block;
+}
+
+/*Formatação do icon Parking*/
 .iconParkingSize{
-    width: 63.23px;
-    height:63px;
-    margin: 5px auto;
-    margin-right: 190px;
+    width: 90px;
+    height:90px;
+}
+
+#textVagas{
+   margin:auto 20px; 
+}
+
+.countVagas{
+    width: 100%;
+    margin-top: 5px;
+    display: flex;
+}
+
+.bodyCount{
+    height: 50px;
+    width: 50px;
+    margin-left: 20px;
+    background-color: aliceblue;
+    border-radius:10px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.bodyCount span{
+    color: black;
+}
+
+.countButtons{
+    height: 33px;
+    width: 33px;
+}
+
+.countButtons:hover{
+   transform: scale(1.2);
+}
+
+/*Corpo da div dos botões*/
+.bodyCountButtons{
+    display: flex;
+    height: 34px;
+    width: 130px;
+    background-color: #191B1A;
+    justify-content: space-between;
+    border-radius: 40px;
+    margin-left: -170px;
+}
+
+
+/*Formatação dos botões*/
+#BtnMais{
+    background-color: transparent;
+    border: none;
+    background-image: url('../assets/mais.png');
+    background-size: cover;
+}
+
+#BtnMenos{
+    background-color: transparent;
+    border: none;
+    background-image: url('../assets/menos.png');
+    background-size: cover;
 }

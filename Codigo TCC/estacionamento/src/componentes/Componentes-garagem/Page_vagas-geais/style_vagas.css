@@ -118,3 +118,18 @@
     background-color: #737373;
     border-radius: 5px;
 }
+
+.iconVagas{
+    margin-top: -25px;
+    margin-left: 20px;
+    height: 23px;
+    width: 23px;
+    background-color: white;
+    border-radius: 40px;
+    position:absolute;
+}
+
+.iconVagas img{
+    height: 19px;
+    width: 19px;
+}

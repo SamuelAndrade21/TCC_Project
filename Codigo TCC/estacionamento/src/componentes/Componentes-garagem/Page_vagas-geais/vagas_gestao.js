@@ -1,23 +1,24 @@
 import styles from './style_vagas.css'
+import Moto from '../../assets/moto.png'
 function Vagas(){
     return(
         <div className='page_principal'> 
 
         <div className = "container9" >
-            <div className="vagas"></div>
-            <div className="vagas"></div>
-            <div className="vagas"></div>
-            <div className="vagas"></div>
-            <div className="vagas"></div>
-            <div className="vagas"></div>
-            <div className="vagas"></div>
-            <div className="vagas"></div>
-            <div className="vagas"></div>
-            <div className="vagas"></div>
-            <div className="vagas"></div>
-            <div className="vagas"></div>
-            <div className="vagas"></div>
-            <div className="vagas"></div>
+            <div className="vagas"><div className="iconVagas"><img src={Moto}></img></div></div>
+            <div className="vagas"><div className="iconVagas"><img src={Moto}></img></div></div>
+            <div className="vagas"><div className="iconVagas"><img src={Moto}></img></div></div>
+            <div className="vagas"><div className="iconVagas"><img src={Moto}></img></div></div>
+            <div className="vagas"><div className="iconVagas"><img src={Moto}></img></div></div>
+            <div className="vagas"><div className="iconVagas"><img src={Moto}></img></div></div>
+            <div className="vagas"><div className="iconVagas"><img src={Moto}></img></div></div>
+            <div className="vagas"><div className="iconVagas"><img src={Moto}></img></div></div>
+            <div className="vagas"><div className="iconVagas"><img src={Moto}></img></div></div>
+            <div className="vagas"><div className="iconVagas"><img src={Moto}></img></div></div>
+            <div className="vagas"><div className="iconVagas"><img src={Moto}></img></div></div>
+            <div className="vagas"><div className="iconVagas"><img src={Moto}></img></div></div>
+            <div className="vagas"><div className="iconVagas"><img src={Moto}></img></div></div>
+            <div className="vagas"><div className="iconVagas"><img src={Moto}></img></div></div>
         </div>
 {/* 
          <div className = "container8" >
