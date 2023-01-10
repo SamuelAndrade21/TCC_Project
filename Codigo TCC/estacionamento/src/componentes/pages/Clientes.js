@@ -1,5 +1,6 @@
 import React from "react"; 
 import styles from '../css_pages/clientes.module.css';
+//envio de informações de usuários para seu BD usar useState e um MIDDLEWARE para verificação de informações
 
 function Clientes(){
     return (

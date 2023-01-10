@@ -10,7 +10,7 @@ function Garagem(){
      <div className= {styles.bodyGarage}>
        <div id ={styles.bodyOffice}><p>Office</p></div>
       <Vagas/>
-      <Layout_vagas/>
+      
     </div>
     <div>
      <InfosCar/>

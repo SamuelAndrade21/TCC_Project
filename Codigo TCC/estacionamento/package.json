@@ -11,11 +11,12 @@
     "@testing-library/user-event": "^13.5.0",
     "@trendmicro/react-sidenav": "^0.5.0",
     "icons": "^1.0.0",
-    "json-server": "^0.17.0",
+    "json-server": "^0.17.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
     "react-pro-sidebar": "^0.7.1",
+    "react-query-selector": "^1.5.1",
     "react-router-dom": "^6.4.1",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.6",
@@ -26,7 +27,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "backend": "json-server --watch bd.json --port 5000"
   },
   "eslintConfig": {
     "extends": [

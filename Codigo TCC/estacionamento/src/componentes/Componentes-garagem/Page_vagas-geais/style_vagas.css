@@ -3,7 +3,7 @@
 }
 
 .vagas.horizontal{
-    background-color: #737373;
+    background-color: #60ab5d;
     width: 2.5px;
     padding-top: 37px;
     margin: 9px;
@@ -115,7 +115,7 @@
     width: 30px;
     padding: 13px;
     margin: 28%;
-    background-color: #737373;
+    background-color: #60ab5d;
     border-radius: 5px;
 }
 
@@ -132,4 +132,38 @@
 .iconVagas img{
     height: 19px;
     width: 19px;
+}
+
+.activeLess{
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    right: 26px;
+    background-image: url(../../assets/menos.png);
+    background-position: center;
+    background-size: cover;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    
+}
+.activeMore{
+    display: none;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    right: 26px;
+    background-image: url(../../assets/mais.png);
+    background-position: center;
+    background-size: cover;
+    z-index: 1000;
+    
+}
+
+.desactiveBtn{
+    display: none;
 }

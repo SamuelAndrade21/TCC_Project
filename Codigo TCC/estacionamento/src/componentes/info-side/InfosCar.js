@@ -1,6 +1,7 @@
 import  styles from  './stylesInfos/infos.css'
 import Car from '../assets/Car-example.png'
 import Caixa from './infoCaixa';
+//Essas infos vao ser pegas atraves do GET aonde vai estar cadastrado no BD os dados dos clientes
 
 function InfosCar(){
     return(
