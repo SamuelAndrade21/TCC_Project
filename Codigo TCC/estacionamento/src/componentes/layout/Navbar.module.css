@@ -40,10 +40,12 @@ li{
     border-radius: 10px;
     color: white;
     cursor: pointer;
+    transition: .5s;
 }
 
 li:hover{
     background-color: #27AE60;
+    transition: .5s;
 }
 
 .Icons{

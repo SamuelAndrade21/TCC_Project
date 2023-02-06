@@ -1,0 +1,22 @@
+.btnRemove button{
+    height: 50px;
+    width: 50px;
+    padding: 10px;
+    font-size: 25px;
+    margin-right: 10px;
+    border-radius: 50%;
+    position: absolute;
+    color: white;
+    bottom: 1105%;
+    background-color: rgb(215, 56, 56);
+    left: 110%;
+    transition: .5s;
+}
+
+.btnRemove{
+    line-height: 50px;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+}

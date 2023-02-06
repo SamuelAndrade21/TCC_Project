@@ -148,6 +148,7 @@
     z-index: 1000;
     
 }
+
 .activeMore{
     display: none;
     cursor: pointer;
@@ -165,5 +166,30 @@
 }
 
 .desactiveBtn{
+    display: none;
+}
+
+.iconVagas,.iconHorizontal {
+    background-color: transparent;
+}
+
+.iconHorizontal img{
+    position:absolute;
+    top: 132%;
+    right: 135%;
+}
+
+
+
+.btnRemove{
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    bottom: 1150%;
+    background-color: red;
+    left: 110%;
+}
+
+.btnRemoveDesactive{
     display: none;
 }

@@ -11,9 +11,9 @@ function Clientes(){
             <div className={styles.inputs}>
                 <form>
                     <input type="text" name = "Nome" required/>
-                    <input type="email" name="E-mail" required/> 
+                    <input type="text" name="E-mail" required/> 
                     <input type="number" name="RG"/> 
-                    <input type="tel" name="Telefone"/> 
+                    <input type="text" name="Telefone"/> 
                     <input type="date" name="Data de nascimento"/> 
                     <input type="password" name="Senha"/> 
                 </form>

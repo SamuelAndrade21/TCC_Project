@@ -95,11 +95,31 @@
 /*Formatação do Btn ao ativar*/
 
 .activeMore{
+    cursor: pointer;
+    transition: .5s; 
+}
+
+.activeLess{
+    cursor: pointer;
+    transition: .5s;
+}
+
+.activeMore:hover{  
+    height: 35px;
+    width: 35px;
+    transition: .5s;
     cursor: pointer; 
 }
 
 .activeLess{
     cursor: pointer;
+}
+
+.activeLess:hover{  
+    height: 35px;
+    width: 35px;
+    transition: .5s;
+    cursor: pointer; 
 }
 
 .activeFocusCar:hover{
