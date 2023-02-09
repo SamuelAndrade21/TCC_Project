@@ -1,7 +1,6 @@
 import styles from '../css_pages/Garagem.module.css';
 import Vagas from '../Componentes-garagem/Page_vagas-geais/vagas_gestao';
 import InfosCar from '../info-side/InfosCar';
-import Layout_vagas from '../layout-controle-de-vagas/Layout_vagas';
 function Garagem(){
     
   

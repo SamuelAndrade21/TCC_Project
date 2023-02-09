@@ -7,12 +7,16 @@ import Footer from './componentes/layout/Footer';
 import Pagina_inicial from './componentes/pages/Pagina_Incial'; 
 import PageNotFound from './componentes/pages/PageNotFound';
 
-function App() {
+
+
+function App({titleText}) {
 
 
   return (
    
     <div>
+     
+    
 
     <Router>
     

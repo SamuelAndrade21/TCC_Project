@@ -7,8 +7,11 @@ import Layout_vagas from '../../layout-controle-de-vagas/Layout_vagas';
 
 
 function Vagas(){
-   const [ btn, setBtn ] = useState(false) 
-
+   const [ btn, setBtn ] = useState(false)
+   const  vagasElement = [1,2,3,4,5,6,7,8,9,10,11,12,13,14]
+   const vagasElementHorizontal = [1,2,3,4,5,6,7,8,9,10,11,12]
+   const vagasOnSideOffide = [1,2,3,4,5,6,7,8,9,10,11,12]
+  
     function changeVagasMore (){
        setBtn(true)
 
@@ -49,169 +52,88 @@ function Vagas(){
        
     }
 
+    function removeAllbuttons(){
+        setBtn(false)
+    }
+
     return(
         <div className='page_principal'> 
 
         <div className = "container9" >
-            <div className="vagas"><div className="iconVagas"><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort}className= 'activeLess desactiveBtn'></button><img src={Moto}></img></div></div>
-            <div className="vagas"><div className="iconVagas"><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort}className= 'activeLess desactiveBtn'></button><img src={Moto}></img></div></div>
-            <div className="vagas"><div className="iconVagas"><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort}className= 'activeLess desactiveBtn'></button><img src={Moto}></img></div></div>
-            <div className="vagas"><div className="iconVagas"><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort}className= 'activeLess desactiveBtn'></button><img src={Moto}></img></div></div>
-            <div className="vagas"><div className="iconVagas"><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort}className= 'activeLess desactiveBtn'></button><img src={Moto}></img></div></div>
-            <div className="vagas"><div className="iconVagas"><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort}className= 'activeLess desactiveBtn'></button><img src={Moto}></img></div></div>
-            <div className="vagas"><div className="iconVagas"><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort}className= 'activeLess desactiveBtn'></button><img src={Moto}></img></div></div>
-            <div className="vagas"><div className="iconVagas"><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort}className= 'activeLess desactiveBtn'></button><img src={Moto}></img></div></div>
-            <div className="vagas"><div className="iconVagas"><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort}className= 'activeLess desactiveBtn'></button><img src={Moto}></img></div></div>
-            <div className="vagas"><div className="iconVagas"><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort}className= 'activeLess desactiveBtn'></button><img src={Moto}></img></div></div>
-            <div className="vagas"><div className="iconVagas"><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort}className= 'activeLess desactiveBtn'></button><img src={Moto}></img></div></div>
-            <div className="vagas"><div className="iconVagas"><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort}className= 'activeLess desactiveBtn'></button><img src={Moto}></img></div></div>
-            <div className="vagas"><div className="iconVagas"><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort}className= 'activeLess desactiveBtn'></button><img src={Moto}></img></div></div>
-            <div className="vagas"><div className="iconVagas"><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort}className= 'activeLess desactiveBtn'></button><img src={Moto}></img></div></div>
+            {
+                vagasElement.map(vagas =>(
+                    <div key = {vagas} className = "vagas"><div className="iconVagas"><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort}className= 'activeLess desactiveBtn'></button><img src={Moto}></img></div></div>
+                ))
+            }
         </div>
-{/* 
-         <div className = "container8" >
-            <div className="vagas"></div>
-            <div className="vagas"></div>
-            <div className="vagas"></div>
-            <div className="vagas"></div>
-            <div className="vagas"></div>
-            <div className="vagas"></div>
-            <div className="vagas"></div>
-            <div className="vagas"></div>
-            <div className="vagas"></div>
-            <div className="vagas"></div>
-            <div className="vagas"></div>
-            <div className="vagas"></div>
-            <div className="vagas"></div>
-            <div className="vagas"></div>
-        </div>       */}
+
         
         <div className = "container7" >
-            <div  className="vagas"><div className='iconVagas'><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort} className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort} className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort} className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort} className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort} className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort} className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort} className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort} className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort} className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort} className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort} className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort} className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort} className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort} className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
+            {
+                vagasElement.map(vagas =>(
+                    <div key={vagas}  className="vagas"><div className='iconVagas'><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort} className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
+                ))
+            }
         </div> 
 
         <div className = "container6" >
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
+            {
+                vagasElement.map(vagas =>(
+                    <div key={vagas}  className="vagas"><div className='iconVagas'><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort} className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
+                ))
+            }
         </div> 
 
         <div className = "container5" >
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
+           {
+                vagasElement.map(vagas =>(
+                    <div key={vagas}  className="vagas"><div className='iconVagas'><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort} className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
+                ))
+            }
         </div> 
 
         <div className = "container4" >
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
+            {
+                vagasElement.map(vagas =>(
+                    <div key={vagas}  className="vagas"><div className='iconVagas'><button onClick={onabort} className='activeMore desactiveBtn'></button><button  onClick={onabort} className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
+                ))
+            }
         </div>  
 
          <div className = "container3" >
-            <div  className="vagas horizontal"><div className='iconVagas iconHorizontal'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas horizontal"><div className='iconVagas iconHorizontal'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas horizontal"><div className='iconVagas iconHorizontal'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas horizontal"><div className='iconVagas iconHorizontal'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas horizontal"><div className='iconVagas iconHorizontal'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas horizontal"><div className='iconVagas iconHorizontal'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas horizontal"><div className='iconVagas iconHorizontal'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas horizontal"><div className='iconVagas iconHorizontal'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas horizontal"><div className='iconVagas iconHorizontal'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas horizontal"><div className='iconVagas iconHorizontal'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas horizontal"><div className='iconVagas iconHorizontal'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas horizontal"><div className='iconVagas iconHorizontal'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
+            {
+                vagasElementHorizontal.map(vagas =>(
+                    <div key={vagas} className="vagas horizontal"><div className='iconVagas iconHorizontal'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
+                ))
+            }
         </div> 
 
         <div className = "container" >
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
+           {
+            vagasOnSideOffide.map(vagas =>(
+                <div key={vagas}  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
+            ))
+           }
         </div> 
         
         <div className = "container2" >
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
-            <div  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
+          {
+            vagasOnSideOffide.map(vagas =>(
+                <div key={vagas}  className="vagas"><div className='iconVagas'><button className='activeMore desactiveBtn'></button><button className= 'activeLess desactiveBtn'></button><img src={Carro}></img></div></div>
+            ))
+           }
         </div>   
 
         {btn === true &&(
-            <Button/>
+            <Button onclick={removeAllbuttons}/>
         )}
         
   <Layout_vagas changeVagasLess={changeVagasLess}
                 changeVagasMore = {changeVagasMore}
-  />
-
-      
+  />     
 
        </div> 
-
-       
+     
         
 )}
 

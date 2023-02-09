@@ -10,10 +10,11 @@
     bottom: 1105%;
     background-color: rgb(215, 56, 56);
     left: 110%;
-    transition: .5s;
+    
 }
 
 .btnRemove{
+    transition: .5s;
     line-height: 50px;
     padding: 0;
     margin: 0;

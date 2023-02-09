@@ -13,7 +13,7 @@ function Layout_vagas({changeVagasLess,changeVagasMore}){
   //Apartir do momento em que tal evento é disparado(dependendo do button se é positivo ou negativo),
   // ele vai executar tal função que vai acrescentar ao banco de dados ou remover("PUT","DELETE")
   //Os values dos buttons vão ser todos capturados via fetch com GET
-  //Vai ter as vagas disponóveis e indisponíveis
+  //Vai ter as vagas disponíveis e indisponíveis
   // useEffect(() =>{
   //   fetch('http://localhost:5000/carros',{
   //     method:
