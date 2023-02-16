@@ -12,19 +12,25 @@ function Vagas(){
    const vagasElementHorizontal = [1,2,3,4,5,6,7,8,9,10,11,12]
    const vagasOnSideOffide = [1,2,3,4,5,6,7,8,9,10,11,12]
   
-    function changeVagasMore (){
+    function changeVagasLess (){
        setBtn(true)
+       console.log(btn)
 
         const vagasLess = document.querySelectorAll('.activeLess')   
         vagasLess.forEach((vagas) =>{
           
             if(vagas.classList.contains('activeLess')){
-                vagas.classList.toggle('activeMore')
+                vagas.classList.add('activeMore')
                 vagas.classList.remove('activeLess')
-                vagas.classList.add('activeBtn')
+               
             }
 
             if(vagas.classList.contains('desactiveBtn')){
+                vagas.classList.remove('desactiveBtn')
+                vagas.classList.add('activeBtn')
+            }
+
+            if(btn === false){
                 vagas.classList.remove('desactiveBtn')
                 vagas.classList.add('activeBtn')
             }
@@ -32,7 +38,7 @@ function Vagas(){
     }
    
 
-    function changeVagasLess(){
+    function changeVagasMore(){
         setBtn(true)
         const vagasMore = document.querySelectorAll('.activeMore')
        
@@ -41,10 +47,15 @@ function Vagas(){
             if(vagas.classList.contains('activeMore')){
                 vagas.classList.remove('activeMore')
                 vagas.classList.add('activeLess')
-                vagas.classList.add('activeBtn')
+              
             }
 
             if(vagas.classList.contains('desactiveBtn')){
+                vagas.classList.remove('desactiveBtn')
+                vagas.classList.add('activeBtn')
+            }
+
+            if(btn === false){
                 vagas.classList.remove('desactiveBtn')
                 vagas.classList.add('activeBtn')
             }
@@ -52,7 +63,33 @@ function Vagas(){
        
     }
 
+
+
+
+
+
     function removeAllbuttons(){
+        // const vagasMore = document.querySelectorAll('.a')
+       
+        // vagasMore.forEach((vagas) =>{
+        //     if(vagas.classList.contains('activeBtn')){
+        //         vagas.classList.remove('desactiveBtn') 
+        //         vagas.classList.remove('activeBtn') 
+        //     } 
+                          
+        // })
+
+            
+        const vagasLess = document.querySelectorAll('.activeBtn') 
+
+        vagasLess.forEach((vagas) =>{
+            if(vagas.classList.contains('activeBtn')){
+                vagas.classList.remove('activeBtn')
+                vagas.classList.add('desactiveBtn')
+            }
+     
+        })
+
         setBtn(false)
     }
 
@@ -128,8 +165,8 @@ function Vagas(){
             <Button onclick={removeAllbuttons}/>
         )}
         
-  <Layout_vagas changeVagasLess={changeVagasLess}
-                changeVagasMore = {changeVagasMore}
+  <Layout_vagas changeVagasLess={changeVagasMore}
+                changeVagasMore = {changeVagasLess}
   />     
 
        </div> 
