@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "type": "module",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "@mui/material": "^5.10.10",
@@ -49,5 +50,18 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamuelAndrade21/TCC_Project.git"
+  },
+  "author": "Grupo de TADS",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SamuelAndrade21/TCC_Project/issues"
+  },
+  "homepage": "https://github.com/SamuelAndrade21/TCC_Project#readme"
 }
