@@ -1,8 +1,8 @@
 import BancoParking from "../server.mjs"
  
-  class AutenticacaoDeUsuario extends BancoParking{
+  class LoginDeUsuario extends BancoParking{
 
-        static AutenticacaoUser(callback){
+        static handle(callback){
            const connection = BancoParking.connect() 
            let sql = 'select nome,email,senha from funcionario'
            let query = connection.query(sql,function(err,results,fields){
@@ -17,9 +17,9 @@ import BancoParking from "../server.mjs"
         }
     }
 
-AutenticacaoDeUsuario.AutenticacaoUser((cars)=>{
+LoginDeUsuario.handle((cars)=>{
     cars.map(car =>{
-        console.log(car )
+        console.log(car)
     })
 })
  
