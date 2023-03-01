@@ -1,6 +1,9 @@
 import mysql from 'mysql'
 import express  from 'express'
-import { LoginDeUsuario } from './services/LoginDeUsuario.mjs'
+
+import pkg from 'jsonwebtoken';
+const { sign } = pkg;
+
 import { Router } from 'express'
 import bodyParser from 'body-parser'
 
@@ -19,7 +22,7 @@ export default class BancoParking{
             host:'localhost',
             user: 'root',
             password:'1234',
-            database: 'park',
+            database: 'parking',
         })
 
         connection.connect()
@@ -40,6 +43,49 @@ router.post('/login',async function(req,res){
         
     })
 })
+
+
+//--CADASTRO
+
+
+router.post('/registrar',async function(req,res,next){
+    const { email } = req.body
+    await EstaCadastrado.handle(email, async function(email) {
+        
+        if(!email){
+            res.status(400).send('Usuario já cadastrado')
+        }
+
+        else{
+            console.log('Usuário cadastrado com sucesso!')
+            next();
+        }
+        })  
+    }, 
+ 
+    async function(req, res) {
+        const { nome, telefone, email, senha } = await req.body;
+        try {
+            const user = { email };
+            console.log(user)
+            
+        if(user){ 
+            await CadastroDeUsuario.handle(nome,telefone,email,senha, function(nome,telefone,email,senha){
+                
+                const user = { nome,telefone,email,senha }
+                res.send(user)
+            })
+        }    
+        }
+
+        catch (error)
+        {
+        console.log(error);
+        res.status(500).send("Internal server error");
+        }
+})
+
+
 
 
 app.listen(3333, () => console.log("Servidor Online"))
