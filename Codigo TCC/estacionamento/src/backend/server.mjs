@@ -77,10 +77,12 @@ router.post('/registrar',async function(req,res,next){
     const { email } = req.body
     await EstaCadastrado.handle(email, async function(email) {
         
+        //Verifica o email e manda uma mensagem de erro
         if(!email){
             res.status(400).send('Usuario já cadastrado')
         }
 
+        //Caso não, ele passa pra próxima função (CadastroDeUsuario) e a executa
         else{
             console.log('Usuário cadastrado com sucesso!')
             next();

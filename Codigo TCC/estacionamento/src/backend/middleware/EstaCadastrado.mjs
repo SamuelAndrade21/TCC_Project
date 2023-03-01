@@ -8,13 +8,17 @@ import BancoParking from "../server.mjs"
            let query =  connection.query(sql,email,function(err,results,fields){
             
             if(err) throw new Error(err)
+
             
+            //Verifica se o resultado entrego ao menos um valor
             if(results[0]){
                console.log("Usuário já cadastrado!")   
                callback(null,err)
                return;
             }
 
+
+            //Concatena o email com o resultado caso não encontre nenhum valor no SELECT 
             else{
              results += email
              console.log("Novo usuário cadastrado com sucesso!")
