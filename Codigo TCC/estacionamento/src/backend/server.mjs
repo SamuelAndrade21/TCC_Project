@@ -16,13 +16,6 @@ const app = express()
 const router = Router()
 
 
-const logUrlMiddleware = async (req, res, next) => {
-    console.log(`Received request for ${'teste'}`);
-    next();
-  }
-
-
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(router)
@@ -47,25 +40,30 @@ export default class BancoParking{
  // --ROTAS DE USUÁRIO 
 
  //--LOGIN 
-router.post('/login',async function(req,res,next){
+router.post('/login',async function(req,res){
+   const { email,senha } = req.body
    
-
-    LoginDeUsuario.handle(senha,email,function(email,senha){
+    await LoginDeUsuario.handle(senha,email,function(email,senha){
         const user = {email,senha}
+        
        
-          
-        const token = sign({
-            name:user.nome,
+         //Gerando o token do usuário 
+        const token = sign(
+        {
             email:user.email,
+            senha:user.senha,
             id:user.id
         },
         process.env.JWT_PASSWORD,
         {
-            subject:user.id,
             expiresIn:'30d'
         })
-
-             res.send(user,token)       
+            //Devolvendo o usuário mais o token
+             const userToken = {
+                user,
+                token
+             }
+        res.send(userToken)     
     })
 })
 
@@ -92,6 +90,7 @@ router.post('/registrar',async function(req,res,next){
  
     async function(req, res) {
         const { nome, telefone, email, senha } = await req.body;
+
         try {
             const user = { email };
             console.log(user)
@@ -102,7 +101,8 @@ router.post('/registrar',async function(req,res,next){
                 const user = { nome,telefone,email,senha }
                 res.send(user)
             })
-        }    
+        }  
+
         }
 
         catch (error)

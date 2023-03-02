@@ -1,4 +1,6 @@
 import BancoParking from "../server.mjs"
+import pkg from 'jsonwebtoken';
+const { sign } = pkg;
  
   export  class LoginDeUsuario{
 
@@ -13,8 +15,9 @@ import BancoParking from "../server.mjs"
                 callback(error);
                 return;
               }
+
           
-              callback(results[0])
+              callback(results)
              
 
            })
