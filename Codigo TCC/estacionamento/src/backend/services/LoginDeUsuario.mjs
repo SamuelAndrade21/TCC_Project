@@ -1,12 +1,11 @@
 import BancoParking from "../server.mjs"
-import pkg from 'jsonwebtoken';
-const { sign } = pkg;
+
  
   export  class LoginDeUsuario{
 
         static async handle(senha,email,callback){
            const connection = await BancoParking.connect()
-           let sql = "select * from funcionario where email = ? and senha = ?"
+           let sql = "select funcionario_id,nome,email,senha from funcionario where email = ? and senha = ?"
            let query = connection.query(sql,[email,senha],function(err,results,fields){
             if(err) throw new Error(err)
             
