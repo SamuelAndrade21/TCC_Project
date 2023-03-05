@@ -1,6 +1,6 @@
 import mysql from 'mysql'
 import express  from 'express'
-import { compare, hash } from 'bcrypt';
+import { compare, compareSync, hash } from 'bcrypt';
 
 import pkg from 'jsonwebtoken';
 const { sign } = pkg;
@@ -12,7 +12,7 @@ import bodyParser from 'body-parser'
 import { LoginDeUsuario } from './services/LoginDeUsuario.mjs'
 import { CadastroDeUsuario } from './services/CadastroDeUsuario.mjs'
 import { EstaCadastrado } from './middleware/EstaCadastrado.mjs';
-
+import { AutenticacaoHash } from './middleware/AutenticacaoHash.mjs';
 
 const app = express()
 const router = Router()
@@ -86,54 +86,69 @@ router.post('/registrar',async function(req,res,next){
 
 
  //--LOGIN 
- router.post('/login',async function(req,res){
-    const { email,senha } = req.body
-    
+ router.post('/login',
  
-     await LoginDeUsuario.handle(senha,email,function(email,senha){
-         const user = {email,senha}
+ 
+ async function(req,res,next){
+    const { email,senha,nome } = req.body
+        try{ 
+            await AutenticacaoHash.handle(email, (email) =>{
+              
+                //Recupera a senha do email que foi digitado
+                    const senhaHash = email[0].senha;
 
-        // if(!compareSenha){
-        //     throw new Error("Email/Senha inválido!")
-        // }
-        try{
-            // const compareSenha =  compare()
 
-            if(!user){
-                res.status(400).send("Error")
-                throw new Error("Email/Senha inválido!")
-            } 
-            
-            else{
-            
-             //Gerando o token do usuário 
-            const token = sign(
-            {
-                email:user.email,
-                senha:user.senha,
-                id:user.id
-            },
-            process.env.JWT_PASSWORD,
-            {
-                expiresIn:'30d'
-            })
-                //Devolvendo o usuário mais o token
-                 const userToken = {
-                    user,
-                    token
-                 }
-            res.send(userToken) 
-            }
+                //Faz um compare com a senha digitada pelo user
+                    const verificaSenha = compareSync(senha,senhaHash)
 
-        }catch(error){
+
+                //Caso de senhas diferentes retorna um erro
+                    if(!verificaSenha){
+                        res.status(400).send("Email/Senha inválido!")
+                    }
+        
+                    else{
+                        next();
+                    }}),
+
+            await LoginDeUsuario.handle(email,function(email){
+                    
+                    const user = { email }
+
+                    if(!user){
+                        res.status(400).send("Email inválido!")
+                        throw new Error("Email/Senha inválido!")
+                    } 
+                    
+                    else{
+                    
+                    //Gerando o token do usuário 
+                    const token = sign(
+                    {
+
+                        user:user.email,
+                    },
+                    process.env.JWT_PASSWORD,
+                    {
+                        expiresIn:'30d'
+                    })
+                        //Devolvendo o usuário mais o token
+                        const userToken = {
+                            user,
+                            token
+                        }
+                    res.send(userToken) 
+                    }
+        
+        })}
+        catch(error){
             console.log(error)
             res.status(500).send("Erro interno de servidor")
         }
-
-         
-            
-     })
- })
+    
+    })       
+     
+ 
 
 
 
