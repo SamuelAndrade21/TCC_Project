@@ -7,7 +7,16 @@ const { sign } = pkg;
 import { Router } from 'express'
 import bodyParser from 'body-parser'
 
+<<<<<<< Updated upstream
 
+=======
+// -- Import de Services
+import { LoginDeUsuario } from './services/LoginDeUsuario.mjs'
+import { CadastroDeUsuario } from './services/CadastroDeUsuario.mjs'
+import { EstaCadastrado } from './middleware/EstaCadastrado.mjs';
+import { AutenticacaoHash } from './middleware/AutenticacaoHash.mjs';
+import { CadastroDeCliente } from './services/GerenciamentoDeCliente.mjs';
+>>>>>>> Stashed changes
 
 const app = express()
 const router = Router()
@@ -21,8 +30,8 @@ export default class BancoParking{
         const connection =  mysql.createConnection({
             host:'localhost',
             user: 'root',
-            password:'1234',
-            database: 'parking',
+            password:'password',
+            database: 'park',
         })
 
         connection.connect()
@@ -86,6 +95,93 @@ router.post('/registrar',async function(req,res,next){
 })
 
 
+<<<<<<< Updated upstream
+=======
+ //--LOGIN 
+ router.post('/login',
+ 
+ 
+ async function(req,res,next){
+    const { email,senha,nome } = req.body
+        try{ 
+            await AutenticacaoHash.handle(email, (email) =>{
+              
+                //Recupera a senha do email que foi digitado
+                    const senhaHash = email[0].senha;
+
+
+                //Faz um compare com a senha digitada pelo user
+                    const verificaSenha = compareSync(senha,senhaHash)
+
+
+                //Caso de senhas diferentes retorna um erro
+                    if(!verificaSenha){
+                        res.status(400).send("Email/Senha inválido!")
+                    }
+        
+                    else{
+                        next();
+                    }}),
+
+            await LoginDeUsuario.handle(email,function(email){
+                    
+                    const user = { email }
+
+                    if(!user){
+                        res.status(400).send("Email inválido!")
+                        throw new Error("Email/Senha inválido!")
+                    } 
+                    
+                    else{
+                    
+                    //Gerando o token do usuário 
+                    const token = sign(
+                    {
+
+                        user:user.email,
+                    },
+                    process.env.JWT_PASSWORD,
+                    {
+                        expiresIn:'30d'
+                    })
+                        //Devolvendo o usuário mais o token
+                        const userToken = {
+                            user,
+                            token
+                        }
+                    res.send(userToken) 
+                    }
+        
+        })}
+        catch(error){
+            console.log(error)
+            res.status(500).send("Erro interno de servidor")
+        }
+    
+    })  
+    
+    
+// Cadastro de Cliente
+router.post('/GerenciamentoDeCliente'), async (req, res ) => {
+   try{
+    const{ nome, celular, email, cpf, veiculo, placa, valorMensal }  =  await req.body
+    await CadastroDeCliente.handle(nome, celular, email, cpf, veiculo, placa, valorMensal, function (nome, celular, email, cpf, veiculo, placa, valorMensal){
+
+
+    const cliente = {nome, celular, email, cpf, veiculo, placa, valorMensal}
+    res.send(cliente)
+    })
+   } catch(error) {
+        console.log(erro)
+        res.status(400).send("Erro na parte de Cadastro de Cliente")
+   }
+
+
+}
+
+ 
+
+>>>>>>> Stashed changes
 
 
 app.listen(3333, () => console.log("Servidor Online"))
