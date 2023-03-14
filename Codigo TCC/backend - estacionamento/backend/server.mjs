@@ -1,11 +1,7 @@
 import mysql from 'mysql'
 import express  from 'express'
-<<<<<<< Updated upstream
 import { compare, compareSync, hash } from 'bcrypt';
-=======
-import { compareSync, hash } from 'bcrypt';
 import { verify } from 'jsonwebtoken';
->>>>>>> Stashed changes
 
 import pkg from 'jsonwebtoken';
 const { sign } = pkg;
@@ -22,10 +18,7 @@ import { AutenticacaoHash } from './middleware/AutenticacaoHash.mjs';
 
 const app = express()
 const router = Router()
-<<<<<<< Updated upstream
-=======
 const Password = process.JWT_PASSWORD = 'e2efee2f862e3751023a8149a21a2bb1'
->>>>>>> Stashed changes
 
 
 app.use(bodyParser.json());
@@ -53,8 +46,6 @@ export default class BancoParking{
 }
 
  // --ROTAS DE USUÁRIO 
-<<<<<<< Updated upstream
-=======
 
 //Função Para verificar 
 
@@ -87,7 +78,6 @@ export default class BancoParking{
    
   
 //   };
->>>>>>> Stashed changes
 
 //--CADASTRO
 router.post('/registrar',async function(req,res,next){
@@ -100,12 +90,8 @@ router.post('/registrar',async function(req,res,next){
     
 
     await EstaCadastrado.handle(email, async function(email) {
-<<<<<<< Updated upstream
-        
-=======
 
 
->>>>>>> Stashed changes
         //Verifica o email e manda uma mensagem de erro
         if(!email){
             res.status(400).send('Usuario já cadastrado')
@@ -212,15 +198,6 @@ router.post('/registrar',async function(req,res,next){
         }
     
     })       
-<<<<<<< Updated upstream
-     
- 
-
-
-
-app.listen(3333, () => console.log("Servidor Online"))
-=======
->>>>>>> Stashed changes
 
 
 app.listen(3333, () => console.log("Servidor Online"))

@@ -1,0 +1,11 @@
+.Link{
+    margin: 5px;
+    text-decoration: none;
+    color: white;
+    transition: .5s;
+}
+
+.Link:hover{
+    transition: .5s;
+    color: #27AE60;
+}
