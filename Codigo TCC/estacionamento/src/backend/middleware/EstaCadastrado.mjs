@@ -31,4 +31,8 @@ import BancoParking from "../server.mjs"
            connection.end()
     
         }
+<<<<<<< Updated upstream
     } 
+=======
+    } 
+>>>>>>> Stashed changes
