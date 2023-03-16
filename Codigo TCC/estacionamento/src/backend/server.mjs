@@ -1,11 +1,6 @@
 import mysql from 'mysql'
 import express  from 'express'
-<<<<<<< Updated upstream
 import { compare, compareSync, hash } from 'bcrypt';
-=======
-import { compareSync, hash } from 'bcrypt';
-import { verify } from 'jsonwebtoken';
->>>>>>> Stashed changes
 
 import pkg from 'jsonwebtoken';
 const { sign } = pkg;
@@ -19,13 +14,12 @@ import { LoginDeUsuario } from './services/LoginDeUsuario.mjs'
 import { CadastroDeUsuario } from './services/CadastroDeUsuario.mjs'
 import { EstaCadastrado } from './middleware/EstaCadastrado.mjs';
 import { AutenticacaoHash } from './middleware/AutenticacaoHash.mjs';
+import { CadastroDeCliente } from './services/GerenciamentoDeCliente.mjs';
+import { DeleteCliente } from './services/GerenciamentoDeCliente.mjs';
 
 const app = express()
 const router = Router()
-<<<<<<< Updated upstream
-=======
 const Password = process.JWT_PASSWORD = 'e2efee2f862e3751023a8149a21a2bb1'
->>>>>>> Stashed changes
 
 
 app.use(bodyParser.json());
@@ -41,8 +35,8 @@ export default class BancoParking{
         const connection =  mysql.createConnection({
             host:'localhost',
             user: 'root',
-            password:'1234',
-            database: 'parking',
+            password:'password',
+            database: 'park',
         })
 
         connection.connect()
@@ -53,8 +47,6 @@ export default class BancoParking{
 }
 
  // --ROTAS DE USUÁRIO 
-<<<<<<< Updated upstream
-=======
 
 //Função Para verificar 
 
@@ -87,7 +79,7 @@ export default class BancoParking{
    
   
 //   };
->>>>>>> Stashed changes
+
 
 //--CADASTRO
 router.post('/registrar',async function(req,res,next){
@@ -100,12 +92,11 @@ router.post('/registrar',async function(req,res,next){
     
 
     await EstaCadastrado.handle(email, async function(email) {
-<<<<<<< Updated upstream
         
-=======
+        
 
 
->>>>>>> Stashed changes
+
         //Verifica o email e manda uma mensagem de erro
         if(!email){
             res.status(400).send('Usuario já cadastrado')
@@ -211,16 +202,34 @@ router.post('/registrar',async function(req,res,next){
             res.status(500).json("Erro de servidor")
         }
     
-    })       
-<<<<<<< Updated upstream
+    }) 
+    
+//- Cadastro de Cliente
+router.post('/cadastrocliente',
+async function(req, res){
+    const {nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, situacao } = req.body
+
+    await CadastroDeCliente.handle(nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, situacao, function (nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, situacao ){
+
+        const cliente = { nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, situacao }
+        res.send(cliente)
+    })
+})
+
+//- Exclusão de Cliente
+router.post('/deletecliente',
+    async function(req, res){
+        const { cliente_id } = req.body
+
+        await DeleteCliente.handle(cliente_id, function (cliente_id){
+
+            const deleta = { cliente_id}
+            res.send(deleta)
+
+        })
+    }
+)
      
  
-
-
-
 app.listen(3333, () => console.log("Servidor Online"))
-=======
->>>>>>> Stashed changes
 
-
-app.listen(3333, () => console.log("Servidor Online"))
