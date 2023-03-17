@@ -1,0 +1,19 @@
+.Button{
+    width: 80%;
+    background-color: #27AE60;
+    color: white;
+    border: none;
+    height: 46px;
+    border-radius: 10px;
+    font-family: Josefin Sans;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0em;
+    transition: .7s;
+    margin: 5px;
+}
+
+.Button:hover{
+    box-shadow: 0px -2px 84px -12px #27AE60;
+    transition: .7s;
+}

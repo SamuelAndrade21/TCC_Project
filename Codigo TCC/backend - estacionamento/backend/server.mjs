@@ -1,6 +1,7 @@
 import mysql from 'mysql'
 import express  from 'express'
 import { compare, compareSync, hash } from 'bcrypt';
+import { verify } from 'jsonwebtoken';
 
 import pkg from 'jsonwebtoken';
 const { sign } = pkg;
@@ -14,8 +15,6 @@ import { LoginDeUsuario } from './services/LoginDeUsuario.mjs'
 import { CadastroDeUsuario } from './services/CadastroDeUsuario.mjs'
 import { EstaCadastrado } from './middleware/EstaCadastrado.mjs';
 import { AutenticacaoHash } from './middleware/AutenticacaoHash.mjs';
-import { CadastroDeCliente } from './services/GerenciamentoDeCliente.mjs';
-import { DeleteCliente } from './services/GerenciamentoDeCliente.mjs';
 
 const app = express()
 const router = Router()
@@ -35,8 +34,8 @@ export default class BancoParking{
         const connection =  mysql.createConnection({
             host:'localhost',
             user: 'root',
-            password:'password',
-            database: 'park',
+            password:'1234',
+            database: 'parking',
         })
 
         connection.connect()
@@ -80,7 +79,6 @@ export default class BancoParking{
   
 //   };
 
-
 //--CADASTRO
 router.post('/registrar',async function(req,res,next){
     const { email } = req.body;
@@ -92,9 +90,6 @@ router.post('/registrar',async function(req,res,next){
     
 
     await EstaCadastrado.handle(email, async function(email) {
-        
-        
-
 
 
         //Verifica o email e manda uma mensagem de erro
@@ -202,34 +197,7 @@ router.post('/registrar',async function(req,res,next){
             res.status(500).json("Erro de servidor")
         }
     
-    }) 
-    
-//- Cadastro de Cliente
-router.post('/cadastrocliente',
-async function(req, res){
-    const {nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, situacao } = req.body
+    })       
 
-    await CadastroDeCliente.handle(nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, situacao, function (nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, situacao ){
 
-        const cliente = { nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, situacao }
-        res.send(cliente)
-    })
-})
-
-//- Exclusão de Cliente
-router.post('/deletecliente',
-    async function(req, res){
-        const { cliente_id } = req.body
-
-        await DeleteCliente.handle(cliente_id, function (cliente_id){
-
-            const deleta = { cliente_id}
-            res.send(deleta)
-
-        })
-    }
-)
-     
- 
 app.listen(3333, () => console.log("Servidor Online"))
-

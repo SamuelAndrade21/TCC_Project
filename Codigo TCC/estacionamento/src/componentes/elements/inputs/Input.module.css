@@ -1,0 +1,36 @@
+.Input{
+    width: 90%;
+    background-color: transparent !important;
+    outline: none;
+    border: none;
+    border-bottom: 0.8px solid #686969;
+    margin-bottom: 20%;
+    padding: 5px;
+    font-family:'Josefin Sans' ;
+    color: white;
+    font-size: 17px;
+    text-indent: 22px;
+}
+
+.Input::placeholder{
+    font-family: Josefin Sans;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 17px;
+    letter-spacing: 0.1em;
+    text-align: left;
+}
+
+.bodyInput{
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+
+.Icon{
+    z-index: 1000;
+    position: absolute;
+    color: #27AE60;
+    font-size: 20px;
+}
