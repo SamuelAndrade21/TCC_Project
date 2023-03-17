@@ -1,11 +1,12 @@
 import BancoParking from "../server.mjs"
+
  
   export  class LoginDeUsuario{
 
-        static async handle(senha,email,callback){
+        static async handle(email,callback){
            const connection = await BancoParking.connect()
-           let sql = "select * from funcionario where email = ? and senha = ?"
-           let query = connection.query(sql,[email,senha],function(err,results,fields){
+           let sql = "select funcionario_id,nome,email from funcionario where email = ?"
+           let query = connection.query(sql,email,function(err,results,fields){
             if(err) throw new Error(err)
             
             if (results.length === 0) {
@@ -13,8 +14,9 @@ import BancoParking from "../server.mjs"
                 callback(error);
                 return;
               }
+
           
-              callback(results[0])
+              callback(results)
              
 
            })
