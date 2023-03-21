@@ -15,7 +15,8 @@ import { CadastroDeUsuario } from './services/CadastroDeUsuario.mjs'
 import { EstaCadastrado } from './middleware/EstaCadastrado.mjs';
 import { AutenticacaoHash } from './middleware/AutenticacaoHash.mjs';
 import { CadastroDeCliente } from './services/GerenciamentoDeCliente.mjs';
-import { DeleteCliente } from './services/GerenciamentoDeCliente.mjs';
+import { DeleteCliente } from './middleware/DeleteCliente.mjs';
+import { EditaCliente } from './middleware/EditaCliente.mjs';
 
 const app = express()
 const router = Router()
@@ -229,7 +230,23 @@ router.post('/deletecliente',
         })
     }
 )
+
+// - Edição de Cliente
+router.post ('/editacliente',
+    async function(req, res){
+        const {nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, cliente_id} = req.body
+
+        await EditaCliente.handle(nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, cliente_id, function (nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, cliente_id){
+
+            const EditaCliente = { nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, cliente_id}
+
+            res.send(EditaCliente)
+        })
+    }
+)
      
  
 app.listen(3333, () => console.log("Servidor Online"))
+
+
 

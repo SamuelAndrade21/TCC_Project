@@ -22,24 +22,3 @@ export class CadastroDeCliente{
 }
 
 
-    /*export class EditaCliente {
-         static async handle()
-    }*/
-
-    export class DeleteCliente {
-
-        static async handle(cliente_id){
-           const connection = await BancoParking.connect()
-           let DeleteCliente = "UPDATE cliente SET situacao = 0 WHERE CLIENTE_ID = '" + cliente_id + "';"
-
-           let query = connection.query(DeleteCliente, function(err, result, fields){
-                if (err) throw new Error(err)
-
-                callback(result)
-           })
-
-
-           console.log(query.DeleteCliente)
-           connection.end()
-        }
-   }

@@ -14,7 +14,7 @@ import BancoParking from "../server.mjs"
             if(results[0]){
                console.log("Usuário já cadastrado!")   
                callback(null,err)
-               return;
+               connection.end()
             }
 
 
