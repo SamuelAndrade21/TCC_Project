@@ -17,6 +17,7 @@ import { AutenticacaoHash } from './middleware/AutenticacaoHash.mjs';
 import { CadastroDeCliente } from './services/GerenciamentoDeCliente.mjs';
 import { DeleteCliente } from './middleware/DeleteCliente.mjs';
 import { EditaCliente } from './middleware/EditaCliente.mjs';
+import { CriaVenda } from './middleware/GestaoVenda.mjs';
 
 const app = express()
 const router = Router()
@@ -244,7 +245,20 @@ router.post ('/editacliente',
         })
     }
 )
-     
+
+// - API de Vendas 
+router.post('/estacionamento',
+    async function(req, res){
+        const { id_funcionario, id_cliente, situacao, valor_venda, valor_total, valor_recebido, troco, venda_cancelada } = req.body
+
+        await CriaVenda.handle(id_funcionario, id_cliente, situacao, valor_venda, valor_total, valor_recebido, troco, venda_cancelada, function(id_funcionario, id_cliente, situacao, valor_venda, valor_total, valor_recebido, troco, venda_cancelada){
+
+            const Venda = { id_funcionario, id_cliente, situacao, valor_venda, valor_total, valor_recebido, troco, venda_cancelada }
+
+            res.send(Venda) 
+        })
+
+    })
  
 app.listen(3333, () => console.log("Servidor Online"))
 
