@@ -1,0 +1,52 @@
+.bodyLogin{
+    height: 100vh;
+    display: flex;
+    width: 100vw;
+
+}
+
+.form{
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    width: 600px;      
+    align-items: center;
+    margin-top: 12%;
+    margin-left: 40px;
+}
+
+.title{
+    margin-bottom: 100px;
+}
+
+img{
+    position: absolute;
+    left: 35%;
+    bottom: -15%;
+}
+
+@media (max-width:1430px) {
+    img{
+        height: 140px;
+        bottom: 87%;
+        left: 0; 
+        right: 0; 
+        margin-left: auto; 
+        margin-right: auto;
+    }
+
+    .bodyLogin{
+        justify-content: center;
+    }
+}
+
+@media (max-width:560px) {
+    
+    img{
+        height: 110px;
+        bottom: 89%;
+    }
+    .form{
+        margin-top: 15%;
+    }
+}
