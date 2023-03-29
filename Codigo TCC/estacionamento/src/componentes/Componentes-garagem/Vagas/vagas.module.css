@@ -1,0 +1,111 @@
+.container{
+    position: absolute;
+    width: 750px;
+    right: 40%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.ListContainer{
+    padding: 0;
+    padding-right: 5px;
+    padding-bottom: 10px;
+    height: 400px;
+    width: 100%;
+    border: 2px solid #27AE60;
+    border-radius: 25px;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.headerList{
+    display: flex;
+    justify-content: start;
+    flex-direction: row;
+    border: 2px solid white;
+    padding: 0px;
+    background-color: #27AE60;
+    margin: 5px 3px;
+    border-radius: 20px 20px 0 0;
+}
+
+.headerList li{
+    list-style: none;
+    margin: 0;
+    border-radius: 0;
+    padding: 12px;
+    height: 45%;
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+}
+
+.headerList li:nth-child(1n){
+    border-left: none;
+}
+
+.headerList li:nth-child(6n){
+    border-right: none;
+}
+
+.ListClient{
+    margin-left:-38px;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.ListClient li{
+    border: 1px solid white;
+    padding: 12px;
+    margin: 0;
+    border-radius: 0;
+}
+
+article{
+    padding: 5px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.conatinerButton{
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-start;
+    margin: 0;
+    padding: 0;
+    margin-top: 30px;
+}
+
+.btnVendas{
+    background-color: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    color: white;
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 3.5px rgb(194, 192, 192); 
+    border-radius: 10px;
+  }
+   
+
+  ::-webkit-scrollbar-thumb {
+    background: #505050; 
+    border-radius: 10px;
+  }
+  

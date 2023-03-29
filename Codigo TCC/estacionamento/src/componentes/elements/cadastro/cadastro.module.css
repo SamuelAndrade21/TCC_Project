@@ -1,0 +1,71 @@
+.bodyCadastro{
+    height: 100vh;
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bodyForm{
+    height: 75%;
+    display: flex;
+    padding-left: 40px;
+    width: 1200px;
+    justify-content: center;
+    align-items: center;
+}
+
+.bodyPermissions{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0; 
+
+}
+
+.bodyInputs{
+    width: 100%;
+}
+
+.Button{
+    width: 95%;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #27AE60;
+    color: white;
+    border: none;
+    height: 46px;
+    border-radius: 10px;
+    font-family: Josefin Sans;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0em;
+    transition: .7s;
+}
+
+.Button:hover{
+    box-shadow: 0px -2px 84px -12px #27AE60;
+    transition: .7s;
+}
+
+@media (max-width:1230px) {
+    .bodyForm{
+        flex-direction: column;
+        width:500px ;
+    }
+}
+
+@media (max-width:400px) {
+    .bodyForm{
+        width: 400px;
+    }
+    hr{
+        width: 350px;
+    }
+
+    .Button{
+        width: 350px;
+    }
+}

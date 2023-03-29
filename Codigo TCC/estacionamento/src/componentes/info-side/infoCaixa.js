@@ -1,10 +1,5 @@
-import  styles from  './stylesInfos/infosCaixa.css'
-import caixa from '../assets/cash-machine.svg'
-import print from  "../assets/printer.png"
+import  styles from  './stylesInfos/infosCaixa.module.css'
 
-//Todas as informações de clientes vão ser métodos POST, vamos adicionar um form ao ul e um botão de envio de informações para confirmar ao caixa
-//O onclick vai printar e enviar as informações ao bd dos clientes
-//instalar o node e o JSON para envio de dados e testar
 function  Caixa(){
 
     const Print = () =>{     
@@ -18,38 +13,36 @@ function  Caixa(){
 
     return(
 
-        <div className="bodyCaixa">
-        <div className='userInfo'>
-        <div className='iconCaixa'>
+        <div className={styles.bodyCaixa}>
+        <div className={styles.userInfo}>
 
-           <ul className='valuesUser'>
+        <div className={styles.iconCaixa}>
+           <ul className={styles.valuesUser}>
             <li value = "text">Funcionário:<span>[valueFuncionario]</span></li>
             <li value = "number">Identificador:<span>[valueIdentificador]</span></li>
            </ul> 
-
-        <img id='imgCaixa' src={caixa}></img>
-        
         </div>
+
         <div id='printCaixa'>
-        <div className='infosComprovante'>
+        <div className={styles.infosComprovante}>
            <p>[valueEmpresa]</p> 
           <p id='phone'><span>[valuePhone]</span></p> 
         </div>
         <hr></hr>
-        <div className='infoCliente'>
+        <div className={styles.infoCliente}>
             <ul className='infoCaixaLista'>
-                <li className='infoCaixa'>Data de lancamento:</li>
-                <li className='infoCaixa'><span>[valuePhone]</span></li>
-                <li className='infoCaixa'>Endereco:</li>
-                <li className='infoCaixa'><span>[valueEndereco]</span></li>
-                <li className='infoCaixa'>Total:</li>
-                <li className='infoCaixa'><span>[valueTotal]</span></li>
+                <li className={styles.infoCaixaLista}>Data de lancamento:</li>
+                <li className={styles.infoCaixaLista}><span>[valuePhone]</span></li>
+                <li className={styles.infoCaixaLista}>Endereco:</li>
+                <li className={styles.infoCaixaLista}><span>[valueEndereco]</span></li>
+                <li className={styles.infoCaixaLista}>Total:</li>
+                <li className={styles.infoCaixaLista}><span>[valueTotal]</span></li>
             </ul>
             </div>
             <hr></hr>
             </div>
-            <div className='prnterBtn'>
-            <button className="btnPrint" type="button" onClick={Print}> <img id='imgPrinter' src={print}></img></button>
+            <div className={styles.prnterBtn}>
+            <button className={styles.btnPrint} type="button" onClick={Print}> </button>
             </div>
         </div>
         

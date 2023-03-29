@@ -1,32 +1,114 @@
-import  styles from  './stylesInfos/infos.css'
-import Car from '../assets/Car-example.png'
+import  styles from  './stylesInfos/infos.module.css'
 import Caixa from './infoCaixa';
-//Essas infos vao ser pegas atraves do GET aonde vai estar cadastrado no BD os dados dos clientes
+import { useState } from 'react';
+
+
+
+
 
 function InfosCar(){
+ const [chek,setChek] = useState(false)
+
     return(
-        <div className = "bodyInfo">
-            <div className = "divCar">
-            <img src = {Car}></img>
-            </div>
+        <div className = {styles.bodyInfo}>
 
-            <div className='firstinfos'>
-        <h2 id='titleCar'>FIAT SUV</h2>
-        <small id='placa'>[placaCarro]</small>
-            </div>
+            <label
+            htmlFor='checkboxInput'
+            className={styles.roundSliderContainer}>
+            <input type={"checkbox"} id = 'checkboxInput' onChange={(e) =>{setChek(e.target.checked)}} className={styles.InputChange}/>
+            <div>Temporario</div>
+            <div>Cliente Mensal</div>
+            <div className={styles.roundSlider}></div>
+            </label>
 
-        <div className='reviewInfoCar'>
-          
-            <ul className='reviewLista'>
-                <li className='infoCar'>Cliente:</li>
-                <li className='infoCar'>[valueCliente]</li>
-                <li className='infoCar'>Horário de entrada:</li>
-                <li className='infoCar'>[valueEntrada]</li>
-                <li className='infoCar'>Horário de saída:</li>
-                <li className='infoCar'>[valueSaida]</li>
-            </ul> 
-        </div>
-        <Caixa/>
+            {chek === true &&(
+                <form className={styles.FormTemp}>
+                <span className={styles.required}>Campos obrigatórios *</span>
+                    <h2>Dados do Temporário</h2>
+                <div className={styles.bodyLabel}>
+                    
+                <label id='name'>Nome:</label>
+                <input
+                type={'text'} className={styles.input}/>
+                </div>
+                
+                <div className={styles.bodyLabel}>
+                <label id='documento'>Documento:</label>
+                <input 
+                type={'text'}
+                className={styles.input}/> 
+                </div>
+               
+                <div className={styles.bodyLabel}>
+                <label id='veiculo'>Veículo:</label>
+                <input 
+                type={'text'}
+                className={styles.input}/> 
+                </div>
+    
+                
+                <div className={styles.bodyLabel}>
+                <label id='placa'>Placa:<span className={styles.required}>*</span></label>
+                <input
+                type={'text'}
+                className={styles.input}/> 
+                </div>
+
+                <button 
+                    type='submit'
+                    className={styles.btnSubmit}>Adicionar</button>
+            
+                
+    
+               </form>
+            )}
+           
+           {chek === false &&(
+            <form className={styles.FormTemp}>
+                <span className={styles.required}>Campos obrigatórios *</span>
+                 <h2>Dados do Cliente</h2>
+                <small>Preenchimento automático</small>
+                <div className={styles.bodyLabel}>
+                    
+                    <label id='name'>Nome:</label>
+                    <input
+                    type={'text'}
+                    className={styles.input}/>
+                    </div>
+                    
+                    <div className={styles.bodyLabel}>
+                    <label id='documento'>Documento:</label>
+                    <input
+                    type={'text'}
+                    className={styles.input}/> 
+                    </div>
+                   
+                    <div className={styles.bodyLabel}>
+                    <label id='veiculo'>Veículo:</label>
+                    <input
+                    type={'text'}
+                    className={styles.input}/> 
+                    </div>
+        
+                    
+                    <div className={styles.bodyLabel}>
+                    <label id='placa'>Placa:<span className={styles.required}>*</span></label>
+                    <input 
+                    type={'text'}
+                    className={styles.input}/> 
+                    </div>
+
+                    <button 
+                    type='submit'
+                    className={styles.btnSubmit}>Adicionar</button>
+            
+
+           </form>
+           )
+           }
+       
+       <Caixa/>
+        
         </div>
     )
 }

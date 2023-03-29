@@ -43,7 +43,7 @@ li{
     transition: .5s;
 }
 
-li:hover{
+.corpo li:hover{
     background-color: #27AE60;
     transition: .5s;
 }
