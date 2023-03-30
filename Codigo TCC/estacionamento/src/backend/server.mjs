@@ -16,6 +16,14 @@ import { CadastroDeUsuario } from './services/CadastroDeUsuario.mjs'
 import { EstaCadastrado } from './middleware/EstaCadastrado.mjs';
 import { AutenticacaoHash } from './middleware/AutenticacaoHash.mjs';
 import { CadastroDeCliente } from './services/GerenciamentoDeCliente.mjs';
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+import { DeleteCliente } from './middleware/DeleteCliente.mjs';
+import { EditaCliente } from './middleware/EditaCliente.mjs';
+import { CriaVenda } from './middleware/GestaoVenda.mjs';
+import { CriaDetalhe } from './middleware/GestaoVendaDetalhe.mjs';
+import { GestaoPagamentos } from './middleware/GestaoPagamento.mjs';
 >>>>>>> Stashed changes
 
 const app = express()
@@ -179,6 +187,71 @@ router.post('/GerenciamentoDeCliente'), async (req, res ) => {
 
 }
 
+<<<<<<< Updated upstream
+=======
+            const deleta = { cliente_id}
+            res.send(deleta)
+
+        })
+    }
+)
+
+// - Edição de Cliente
+router.post ('/editacliente',
+    async function(req, res){
+        const {nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, cliente_id} = req.body
+
+        await EditaCliente.handle(nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, cliente_id, function (nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, cliente_id){
+
+            const EditaCliente = { nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, cliente_id}
+
+            res.send(EditaCliente)
+        })
+    }
+)
+
+// - API de Vendas 
+router.post('/estacionamento',
+    async function(req, res){
+        const { id_funcionario, id_cliente, situacao, valor_venda, valor_total, valor_recebido, troco, venda_cancelada } = req.body
+
+        await CriaVenda.handle(id_funcionario, id_cliente, situacao, valor_venda, valor_total, valor_recebido, troco, venda_cancelada, function(id_funcionario, id_cliente, situacao, valor_venda, valor_total, valor_recebido, troco, venda_cancelada){
+
+            const Venda = { id_funcionario, id_cliente, situacao, valor_venda, valor_total, valor_recebido, troco, venda_cancelada }
+
+            res.send(Venda) 
+        })
+
+    })
+
+router.post('/estacionamento/detalhe',
+    async function(req, res){
+        const {id_venda_cabecalho, veiculo, modelo, placa, ano } = req.body
+
+        await CriaDetalhe.handle(id_venda_cabecalho, veiculo, modelo, placa, ano, function(id_venda_cabecalho, veiculo, modelo, placa, ano){
+            
+            const detalhe = {id_venda_cabecalho, veiculo, modelo, placa, ano}
+
+            res.send(detalhe)
+        
+        }) 
+        
+    })
+
+router.post('/pagamento',
+    async function(req, res){
+        const {venda_cabecalho_id, situacao, valor_recebido, troco} = req.body
+
+        await GestaoPagamentos.handle(venda_cabecalho_id, situacao, valor_recebido, troco, function(venda_cabecalho_id, situacao, valor_recebido, troco){
+
+            const pagamento = { venda_cabecalho_id, situacao, valor_recebido, troco}
+
+            res.send(pagamento)
+        })
+
+    }
+)
+>>>>>>> Stashed changes
  
 
 >>>>>>> Stashed changes
