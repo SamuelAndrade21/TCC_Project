@@ -5,14 +5,13 @@ export class CriaVenda{
 
         const connection = await BancoParking.connect()
 
-        const sql = "INSERT INTO VENDA_CABECALHO (id_funcionario, id_cliente, situacao, valor_venda, valor_total, valor_recebido, troco, venda_cancelada ) values ( '"+ id_funcionario +"', '"+ id_cliente +"', '"+ situacao +"','"+ valor_venda +"','"+ valor_total +"', '"+ valor_recebido +"', '"+ troco +"', '"+ venda_cancelada +"')"
+        let venda = "INSERT INTO VENDA_CABECALHO (id_funcionario, id_cliente, situacao, valor_venda, valor_total, valor_recebido, troco, venda_cancelada ) values ( '"+ id_funcionario +"', '"+ id_cliente +"', '"+ situacao +"','"+ valor_venda +"','"+ valor_total +"', '"+ valor_recebido +"', '"+ troco +"', '"+ venda_cancelada +"');"
 
-        connection.query(sql, function(err, results, fields){
+        connection.query(venda, function(err, results, fields){
             if (err) throw new err
 
             callback(results)
-         
+            connection.end()
         })
-           connection.end()
     }
 }
