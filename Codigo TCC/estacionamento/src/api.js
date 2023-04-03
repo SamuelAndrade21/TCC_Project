@@ -1,11 +1,11 @@
 import axios, {AxiosError} from 'axios'
 
-
 export function setupAPIClient( ){
 
 
 const api = axios.create({
-    baseURL: 'http://localhost:3333'
+    baseURL: 'http://localhost:3333',
+    responseType: 'json'
     // headers:{
     //     Authorization: `Bearer ${cookies['@nextauth.token']}`
     // }

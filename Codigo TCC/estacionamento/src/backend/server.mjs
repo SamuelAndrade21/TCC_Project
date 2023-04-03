@@ -1,11 +1,9 @@
 import mysql from 'mysql'
 import express  from 'express'
-import { compare, compareSync, hash } from 'bcrypt';
 
 import pkg from 'jsonwebtoken';
 const { sign } = pkg;
 
-import cors from 'cors'
 import { Router } from 'express'
 import bodyParser from 'body-parser'
 
@@ -15,19 +13,19 @@ import { CadastroDeUsuario } from './services/CadastroDeUsuario.mjs'
 import { EstaCadastrado } from './middleware/EstaCadastrado.mjs';
 import { AutenticacaoHash } from './middleware/AutenticacaoHash.mjs';
 import { CadastroDeCliente } from './services/GerenciamentoDeCliente.mjs';
-import { DeleteCliente } from './services/GerenciamentoDeCliente.mjs';
+
+import { DeleteCliente } from './middleware/DeleteCliente.mjs';
+import { EditaCliente } from './middleware/EditaCliente.mjs';
+import { CriaVenda } from './middleware/GestaoVenda.mjs';
+import { CriaDetalhe } from './middleware/GestaoVendaDetalhe.mjs';
+import { GestaoPagamentos } from './middleware/GestaoPagamento.mjs';
+
 
 const app = express()
 const router = Router()
-const Password = process.JWT_PASSWORD = 'e2efee2f862e3751023a8149a21a2bb1'
-
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(router)
-router.use(cors({origin:true}))
-
-
 
 export default class BancoParking{
 
@@ -46,88 +44,50 @@ export default class BancoParking{
 
 }
 
- // --ROTAS DE USUÁRIO 
-
-//Função Para verificar 
-
-//const  token  = req.headers.authorization
-    
+ // --ROTAS DE USUÁRIO
+router.post('/login',async function(req,res){
+    const {email,senha} =  req.body
+  
+    LoginDeUsuario.handle(senha,email,function(email,senha){
+        const user = {email,senha}
+             res.send(user)
+           
         
-    // if (!token) {
-    //     return res.status(401).json({ message: 'Nenhum token informado!' });
-    //   }
-  
-      
-    // else{
-    //     //faz um split para recuperar somente o token e remover o 'Bearer'
-    //     const tokenArray = token.split(' ');
-    //     const tokenValues = tokenArray[1];
-
-    //         try {  
-    //         const decodedToken = verify(tokenValues, Password);
-    //         //Recuperando o id do token
-    //         req.sub = decodedToken.sub;
-
-    //         console.log(decodedToken.sub)
-
-    //          next();
-
-    //         } catch (err) {
-    //         return res.status(401).json({ message: 'Token inválido' }).end();
-    //         }
-    // }
-   
-  
-//   };
+    })
+})
 
 
 //--CADASTRO
+
+
 router.post('/registrar',async function(req,res,next){
-    const { email } = req.body;
-    const token = req.headers.authorization
-
-    if(!token){
-        res.status(400).send('Error ao gerar token')
-         }
-    
-
+    const { email } = req.body
     await EstaCadastrado.handle(email, async function(email) {
         
-        
-
-
-
-        //Verifica o email e manda uma mensagem de erro
         if(!email){
             res.status(400).send('Usuario já cadastrado')
         }
 
-        //Caso não, ele passa pra próxima função (CadastroDeUsuario) e a executa
         else{
             console.log('Usuário cadastrado com sucesso!')
-            
+            next();
         }
-        next();
         })  
     }, 
-    
  
-    async function(req, res) {  
+    async function(req, res) {
         const { nome, telefone, email, senha } = await req.body;
-         const senhaHash = await hash(senha,8)
-
         try {
             const user = { email };
             console.log(user)
             
         if(user){ 
-            await CadastroDeUsuario.handle(nome,telefone,email,senhaHash, function(nome,telefone,email,senhaHash){
+            await CadastroDeUsuario.handle(nome,telefone,email,senha, function(nome,telefone,email,senha){
                 
-                const user = { nome,telefone,email,senhaHash }
+                const user = { nome,telefone,email,senha }
                 res.send(user)
             })
-        }  
-
+        }    
         }
 
         catch (error)
@@ -143,8 +103,7 @@ router.post('/registrar',async function(req,res,next){
  
  
  async function(req,res,next){
-    const { email,senha } = req.body    
-    
+    const { email,senha,nome } = req.body
         try{ 
             await AutenticacaoHash.handle(email, (email) =>{
               
@@ -158,8 +117,7 @@ router.post('/registrar',async function(req,res,next){
 
                 //Caso de senhas diferentes retorna um erro
                     if(!verificaSenha){
-                        res.status(400).json("Email/Senha inválido")
-                        throw new Error("Email/Senha inválido")
+                        res.status(400).send("Email/Senha inválido!")
                     }
         
                     else{
@@ -171,7 +129,7 @@ router.post('/registrar',async function(req,res,next){
                     const user = { email }
 
                     if(!user){
-                        res.status(400).json("Email/Senha inválido!")
+                        res.status(400).send("Email inválido!")
                         throw new Error("Email/Senha inválido!")
                     } 
                     
@@ -182,7 +140,6 @@ router.post('/registrar',async function(req,res,next){
                     {
 
                         user:user.email,
-                        sub:user.email[0].funcionario_id
                     },
                     process.env.JWT_PASSWORD,
                     {
@@ -199,37 +156,90 @@ router.post('/registrar',async function(req,res,next){
         })}
         catch(error){
             console.log(error)
-            res.status(500).json("Erro de servidor")
+            res.status(500).send("Erro interno de servidor")
         }
     
-    }) 
+    })  
     
-//- Cadastro de Cliente
-router.post('/cadastrocliente',
-async function(req, res){
-    const {nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, situacao } = req.body
+    
+// Cadastro de Cliente
+router.post('/GerenciamentoDeCliente'), async (req, res ) => {
+   try{
+    const{ nome, celular, email, cpf, veiculo, placa, valorMensal }  =  await req.body
+    await CadastroDeCliente.handle(nome, celular, email, cpf, veiculo, placa, valorMensal, function (nome, celular, email, cpf, veiculo, placa, valorMensal){
 
-    await CadastroDeCliente.handle(nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, situacao, function (nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, situacao ){
 
-        const cliente = { nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, situacao }
-        res.send(cliente)
+    const cliente = {nome, celular, email, cpf, veiculo, placa, valorMensal}
+    res.send(cliente)
     })
-})
+   } catch(error) {
+        console.log(erro)
+        res.status(400).send("Erro na parte de Cadastro de Cliente")
+   }
 
-//- Exclusão de Cliente
-router.post('/deletecliente',
+
+}
+
+// //- Exclusão de Cliente
+router.post('/cliente/deleta',
     async function(req, res){
         const { cliente_id } = req.body
 
         await DeleteCliente.handle(cliente_id, function (cliente_id){
 
             const deleta = { cliente_id}
-            res.send(deleta)
+            res.json(deleta)
 
         })
     }
 )
-     
- 
-app.listen(3333, () => console.log("Servidor Online"))
+// - Edição de Cliente
+router.post ('/editacliente',
+    async function(req, res){
+        const {nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, cliente_id} = req.body
+        await EditaCliente.handle(nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, cliente_id, function (nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, cliente_id){
+            const EditaCliente = { nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, cliente_id}
+            res.send(EditaCliente)
+        })
+    }
+)
+// - API de Vendas 
+router.post('/estacionamento',
+    async function(req, res){
+        const { id_funcionario, id_cliente, situacao, valor_venda, valor_total, valor_recebido, troco, venda_cancelada } = req.body
+        await CriaVenda.handle(id_funcionario, id_cliente, situacao, valor_venda, valor_total, valor_recebido, troco, venda_cancelada, function(id_funcionario, id_cliente, situacao, valor_venda, valor_total, valor_recebido, troco, venda_cancelada){
+            const Venda = { id_funcionario, id_cliente, situacao, valor_venda, valor_total, valor_recebido, troco, venda_cancelada }
+            res.send(Venda) 
+        })
+    })
+router.post('/estacionamento/detalhe',
+    async function(req, res){
+        const {id_venda_cabecalho, veiculo, modelo, placa, ano } = req.body
+        await CriaDetalhe.handle(id_venda_cabecalho, veiculo, modelo, placa, ano, function(id_venda_cabecalho, veiculo, modelo, placa, ano){
+            
+            const detalhe = {id_venda_cabecalho, veiculo, modelo, placa, ano}
+            res.send(detalhe)
+        
+        }) 
+        
+    })
+router.post('/pagamento',
+    async function(req, res){
+        const {venda_cabecalho_id, situacao, valor_recebido, troco} = req.body
 
+        await GestaoPagamentos.handle(venda_cabecalho_id, situacao, valor_recebido, troco, function(venda_cabecalho_id, situacao, valor_recebido, troco){
+
+            const pagamento = { venda_cabecalho_id, situacao, valor_recebido, troco}
+
+            res.send(pagamento)
+        })
+
+    }
+)
+
+ 
+
+
+
+
+app.listen(3333, () => console.log("Servidor Online"))

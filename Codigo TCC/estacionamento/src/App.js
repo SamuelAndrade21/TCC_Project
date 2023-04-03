@@ -8,7 +8,7 @@ import PageNotFound from './componentes/pages/PageNotFound';
 import Login from './componentes/elements/login/login';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-
+import Cadastrar from './componentes/elements/cadastro/cadastro';
 
 
 function App() {
@@ -31,7 +31,9 @@ function App() {
     <Route path='/Clientes' element ={<Clientes/>}/>
     <Route path='/Relatorios' element ={<Relatorios/>}/>
     <Route path='*' element={<Navigate to='/404' />} />
+    <Route path='/cadastrar' element ={<Cadastrar/>}/>
     <Route path='/404' element ={<PageNotFound/>}/>
+
     
 
     

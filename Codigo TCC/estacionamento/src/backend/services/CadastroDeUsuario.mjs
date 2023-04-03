@@ -1,20 +1,26 @@
 import BancoParking from "../server.mjs"
+import { promisify } from 'util'
 
  
   export  class CadastroDeUsuario{
 
-        static async handle(nome,telefone,email,senha,callback){
+        static async handle(nome,telefone,email,senha){
            const connection = await BancoParking.connect()
            let sql =  "insert into funcionario (nome,telefone,email,senha) values ( '"+ nome +"', '"+ telefone +"', '"+ email +"', '"+ senha +"')"
-           let query = await connection.query(sql,function(err,results,fields){
-            if(err) throw new Error(err)
+           const query = promisify(connection.query).bind(connection)
+           const results = await query(sql,[nome,telefone,email,senha])
+           connection.end();
 
-            callback(results)
-               
-           })
+           if(results.length === 0){
+            throw new Error("Erro ao cadastrar!")
+           }
+           
+           return results
+        }
 
-           console.log(query.sql)
-           connection.end()
-    
+        static  handleWithCallback(nome,telefone,email,senha,callback){
+          this.handle(nome,telefone,email,senha)
+         .then((results) =>  callback(results))
+         .catch((err) => callback(err))
         }
     } 
