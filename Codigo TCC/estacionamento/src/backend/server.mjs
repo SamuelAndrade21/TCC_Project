@@ -18,7 +18,7 @@ import { CadastroDeCliente } from './services/GerenciamentoDeCliente.mjs';
 import { DeleteCliente } from './middleware/DeleteCliente.mjs';
 import { EditaCliente } from './middleware/EditaCliente.mjs';
 import { CriaVenda } from './middleware/GestaoVenda.mjs';
-
+import { TotalVendas } from './services/ApiRelatorios/TotalVendas.mjs';
 
 const Password = process.JWT_PASSWORD = 'e2efee2f862e3751023a8149a21a2bb1'
 
@@ -128,7 +128,7 @@ router.post ('/cliente/editar',
     }
 )
 
-// - API de Vendas 
+
 router.post('/estacionamento',
     async function(req, res){
         const { id_funcionario, id_cliente, situacao, valor_venda, valor_total, valor_recebido, troco, venda_cancelada } = req.body
@@ -163,8 +163,6 @@ router.post('/registrar',async function(req,res){
                    }
 
 })
-
-
 
 
  //--LOGIN 
@@ -246,6 +244,23 @@ router.post('/registrar',async function(req,res){
         }
     
     })  
+
+
+// - API DE VENDAS
+
+router.get('/relatorios/vendas-soma', async function(req,res){
+    try
+    {
+        TotalVendas.handleWithCallback((results) =>{
+            console.log(results)
+            res.status(200).json(results)
+        })
+    }
+    catch(err)
+    {
+        console.log(err)
+    }
+})
  
 app.listen(3333, () => console.log("Servidor Online"))
 
