@@ -1,4 +1,4 @@
-import BancoParking from "../server.mjs"
+import BancoParking from "../../server.mjs"
 import { promisify } from 'util'
 
  

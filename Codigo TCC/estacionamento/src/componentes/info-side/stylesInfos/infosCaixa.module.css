@@ -9,7 +9,7 @@
     margin-top: 10px;
     width: 98%;
     height: 30%;
-    background: linear-gradient(270deg, #686969 0%, rgba(58, 59, 59, 0) 100%);
+    background: linear-gradient(270deg, #2b2b2b 0%, rgba(58, 59, 59, 0) 100%);
     padding: 8px;
 }
 
@@ -62,7 +62,7 @@
 
 .infosComprovante p{
     text-align: center;
-    margin-top: 35px;
+    margin-top: 40px;
 }
 
 hr{
@@ -77,6 +77,7 @@ hr{
     margin-top: 0%;
     overflow: hidden;
     padding: 8px;
+    margin-right: 36px;
 }
 
   

@@ -3,13 +3,68 @@
 
 /*Style e medida da areas de garagem*/
 .bodyGarage{
-  display: flex;
+    display: flex;
+    flex-direction: row;
     width:100%;
     height: 100%;
     text-align: center;
     background-color: #161717;
     position: absolute;
     z-index: 3;
+    justify-content: space-between;
+}
+
+.container{
+  width: 520px;
+  display: flex;
+}
+
+.new-container{
+  width: 0px;
+  display: flex;
+}
+
+.closeInfos{
+  margin-right: 5px;
+  height: 100%;
+  width: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(146,213,255);
+  background: linear-gradient(270deg, rgba(146,213,255,0.004639355742296902) 0%, rgba(58,59,59,1) 100%);
+}
+
+.hideInfo{
+  display: flex;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 13px;
+  height: 20px;
+  width: 20px;
+  background-color: transparent;
+  text-align: center;
+  align-items: center;
+  z-index: 1000;
+  background-image: url('../../componentes/assets/arrowright.svg');
+  border: none;
+}
+
+.showInfos{
+  transition: .7s;
+  display: flex;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 13px;
+  transition: background-image 0.5s ease-out;
+  height: 20px;
+  width: 20px;
+  background-color: transparent;
+  text-align: center;
+  align-items: center;
+  z-index: 1000;
+  background-image: url('../../componentes/assets/arrowleft.svg');
+  border: none;
 }
 
 

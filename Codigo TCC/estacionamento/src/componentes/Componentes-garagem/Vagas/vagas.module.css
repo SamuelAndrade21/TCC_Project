@@ -21,6 +21,10 @@
     flex-direction: column;
 }
 
+.ListContainer ul:nth-child(2n){
+    background-color: #505050;
+}
+
 .headerList{
     display: flex;
     justify-content: start;
@@ -53,6 +57,8 @@
 .ListClient{
     margin-left:-38px;
     display: flex;
+    font-size: 0.8rem;
+    height: 50px;
     flex-direction: row;
     list-style: none;
     margin-top: 0;
@@ -61,11 +67,19 @@
 }
 
 .ListClient li{
-    border: 1px solid white;
+    /* border: 1px solid white; */
+    display: flex;
+    justify-content: center;
     padding: 12px;
+    max-width:100px ;
     margin: 0;
+    text-align: center;
+    align-items: center;
+    line-height: 20px;
     border-radius: 0;
 }
+
+
 
 article{
     padding: 5px;
@@ -98,6 +112,38 @@ article{
     flex-direction: row;
     justify-content: center;
     margin-top: 40px;
+}
+
+@media (max-width:1475px){
+    .container{
+        width: 600px;
+        right: 40%;
+        margin-right: 40px;
+    }
+}
+
+@media (max-width:1275px){
+    .container{
+        width: 600px;
+        right: 40%;
+        margin-right: 50px;
+    }
+}
+
+@media (max-width:1245px){
+    .container{
+        width: 600px;
+        right: 30%;
+        margin-right: 40px;
+    }
+}
+
+@media (max-width:1060px){
+    .container{
+        width: 500px;
+        right: 15%;
+        margin-right: 40px;
+    }
 }
 
 

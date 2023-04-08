@@ -1,38 +1,36 @@
 import mysql from 'mysql'
 import express  from 'express'
-import { compare, compareSync, hash } from 'bcrypt';
+import { compareSync, hash } from 'bcrypt';
 import bodyParser from 'body-parser'
-import pkg from 'jsonwebtoken';
+import pkg, { verify } from 'jsonwebtoken';
 const { sign } = pkg;
-
 import cors from 'cors'
 import { Router } from 'express'
 
 
 // -- Import de Services
-import { LoginDeUsuario } from './services/LoginDeUsuario.mjs'
-import { CadastroDeUsuario } from './services/CadastroDeUsuario.mjs'
+import { LoginDeUsuario } from './services/ApiFuncionario/LoginDeUsuario.mjs'
+import { CadastroDeUsuario } from './services/ApiFuncionario/CadastroDeUsuario.mjs'
 import { EstaCadastrado } from './middleware/EstaCadastrado.mjs';
 import { AutenticacaoHash } from './middleware/AutenticacaoHash.mjs';
-import { CadastroDeCliente } from './services/GerenciamentoDeCliente.mjs';
-import { DeleteCliente } from './middleware/DeleteCliente.mjs';
-import { EditaCliente } from './middleware/EditaCliente.mjs';
-import { CriaVenda } from './middleware/GestaoVenda.mjs';
+import { CadastroDeCliente } from './services/ApiFuncionario/GerenciamentoDeCliente.mjs';
+import { DeleteCliente } from './services/ApiClientes/DeleteCliente.mjs';
+import { EditaCliente } from './services/ApiClientes/EditaCliente.mjs';
+import { CriaVenda } from './services/ApiVendas/GestaoVenda.mjs';
 import { TotalVendas } from './services/ApiRelatorios/TotalVendas.mjs';
+import { CriaDetalhe } from './services/ApiVendas/GestaoVendaDetalhe.mjs';
+import { GestaoPagamentos } from './services/ApiVendas/GestaoPagamento.mjs';
+import { ListaVendas } from './services/ApiVendas/ListaVendas.mjs';
 
 const Password = process.JWT_PASSWORD = 'e2efee2f862e3751023a8149a21a2bb1'
-
-
 
 
 const app = express()
 const router = Router()
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(router)
 router.use(cors({origin:true}))
-
-
 
 export default class BancoParking{
 
@@ -51,53 +49,54 @@ export default class BancoParking{
 
 }
 
- // --ROTAS DE USUÁRIO 
 
-
-//Função Para verificar 
-
-//const  token  = req.headers.authorization
-    
-        
-    // if (!token) {
-    //     return res.status(401).json({ message: 'Nenhum token informado!' });
-    //   }
+// FUNÇÃO DE VERIFICAÇÃO DE TOKEN
+async function EstaAutenticado(req,res,next){
+    const  token  =  req.headers.authorization
+    console.log(token)
+    if (!token){
+        return res.status(401).json({ message: 'Nenhum token informado!' });
+      }
   
       
-    // else{
-    //     //faz um split para recuperar somente o token e remover o 'Bearer'
-    //     const tokenArray = token.split(' ');
-    //     const tokenValues = tokenArray[1];
+        //faz um split para recuperar somente o token e remover o 'Bearer'
+        const tokenArray = token.split(' ');
+        const tokenValues = tokenArray[1];
+        
+           try{
+                const decodedToken = verify(tokenValues, process.JWT_PASSWORD);
+                //Recuperando o id do token
+                req.sub = decodedToken.sub;
+    
+                 next();
+            }
+            catch(err){
+                console.log(err)
+                res.status(401).json("Token inválido!")
+            }
+}
 
-    //         try {  
-    //         const decodedToken = verify(tokenValues, Password);
-    //         //Recuperando o id do token
-    //         req.sub = decodedToken.sub;
-
-    //         console.log(decodedToken.sub)
-
-    //          next();
-
-    //         } catch (err) {
-    //         return res.status(401).json({ message: 'Token inválido' }).end();
-    //         }
-    // }
-   
-  
-//   };
 
 
     
 //- Cadastro de Cliente
 router.post('/cliente/cadastro',
 async function(req, res){
-    const {nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, situacao } = req.body
+    try{
+        const {nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, situacao } = req.body
 
     await CadastroDeCliente.handle(nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, situacao, function (nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, situacao ){
 
         const cliente = { nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, situacao }
         res.send(cliente)
     })
+    }
+     catch(error) {
+        console.log(erro)
+        res.status(400).send("Erro na parte de Cadastro de Cliente")
+   }
+
+
 })
 
 // //- Exclusão de Cliente
@@ -128,6 +127,19 @@ router.post ('/cliente/editar',
     }
 )
 
+// - API DE VENDAS
+
+router.get('/estacionamento/vendas', async function(req,res,next){
+        try
+        {
+            ListaVendas.handleWithCallback((results) =>{
+                res.status(200).json(results)
+            })
+        }
+        catch(err){
+            console.log(err)
+        }
+})
 
 router.post('/estacionamento',
     async function(req, res){
@@ -140,6 +152,51 @@ router.post('/estacionamento',
         })
 
     })
+
+
+
+router.post('/estacionamento/detalhe',
+    async function(req, res){
+        const {id_venda_cabecalho, veiculo, modelo, placa, ano } = req.body
+        await CriaDetalhe.handle(id_venda_cabecalho, veiculo, modelo, placa, ano, function(id_venda_cabecalho, veiculo, modelo, placa, ano){
+            
+            const detalhe = {id_venda_cabecalho, veiculo, modelo, placa, ano}
+            res.send(detalhe)
+        
+        }) 
+        
+    })
+
+
+router.post('/pagamento',
+    async function(req, res){
+        const {venda_cabecalho_id, situacao, valor_recebido, troco} = req.body
+
+        await GestaoPagamentos.handle(venda_cabecalho_id, situacao, valor_recebido, troco, function(venda_cabecalho_id, situacao, valor_recebido, troco){
+
+            const pagamento = { venda_cabecalho_id, situacao, valor_recebido, troco}
+
+            res.send(pagamento)
+        })
+
+    }
+)
+
+// API de Relatórios
+router.get('/relatorios/vendas-soma',EstaAutenticado, async function(req,res,next){
+    try
+    {
+        TotalVendas.handleWithCallback((results) =>{
+            console.log(results)
+            res.status(200).json(results)
+        })
+        
+    }
+    catch(err)
+    {
+        console.log(err)
+    }
+})
 
 //--CADASTRO
 router.post('/registrar',async function(req,res){
@@ -166,10 +223,7 @@ router.post('/registrar',async function(req,res){
 
 
  //--LOGIN 
- router.post('/login',
- 
- 
- async function(req,res,next){
+ router.post('/login', async function(req,res,next){
     const { email,senha } = req.body  
 
       
@@ -243,26 +297,11 @@ router.post('/registrar',async function(req,res){
             res.status(500).json("Erro de servidor")
         }
     
-    })  
+    })
 
 
-// - API DE VENDAS
 
-router.get('/relatorios/vendas-soma', async function(req,res){
-    try
-    {
-        TotalVendas.handleWithCallback((results) =>{
-            console.log(results)
-            res.status(200).json(results)
-        })
-    }
-    catch(err)
-    {
-        console.log(err)
-    }
-})
+
+
  
 app.listen(3333, () => console.log("Servidor Online"))
-
-
-

@@ -15,6 +15,11 @@ function Login() {
     const navigate = useNavigate()
     const [email, setEmail] = useState('')
     const [ senha,setSenha ] = useState('')
+    const [ veiculo,setVeiculo ] = useState('')
+    const [ placa,setPlaca ] = useState('')
+    const [ modelo,setModelo ] = useState('')
+    const [ ano,setAno ] = useState('')
+    const [ valorMensalidade,setValorMensalidade ] = useState('')
 
     async function singIn(e){
         e.preventDefault() 
@@ -88,7 +93,51 @@ function Login() {
                 type={'password'}
                 icon ={<HiLockClosed/>}
                 placeholder = {'Senha'}>
-                </Input>
+                </Input> 
+
+                <Input 
+                handleChange={(e) =>{setVeiculo(e.target.value)}}
+                value={veiculo}
+                type={'text'}
+                icon ={<HiLockClosed/>}
+                placeholder = {'Veículo'}>
+                </Input> 
+
+                <Input 
+                handleChange={(e) =>{setPlaca(e.target.value)}}
+                value={placa}
+                type={'text'}
+                icon ={<HiLockClosed/>}
+                placeholder = {'Placa'}>
+                </Input> 
+
+                <Input 
+                handleChange={(e) =>{setModelo(e.target.value)}}
+                value={modelo}
+                type={'text'}
+                icon ={<HiLockClosed/>}
+                placeholder = {'Modelo'}>
+                </Input> 
+
+                <Input 
+                handleChange={(e) =>{setAno(e.target.value)}}
+                value={ano}
+                type={'text'}
+                icon ={<HiLockClosed/>}
+                placeholder = {'Ano'}>
+                </Input> 
+
+                <Input 
+                handleChange={(e) =>{setValorMensalidade(e.target.value)}}
+                value={valorMensalidade}
+                type={'valorMensalidade'}
+                icon ={<HiLockClosed/>}
+                placeholder = {'Senha'}>
+                </Input> 
+
+
+
+                
                 <p className={styles.cadastrar}>Não possuí login?<span><Link href={'/cadastrar'} text={'Cadastre-se'}></Link></span></p>
 
                 <Button  type={'submit'} text ={'Entrar'}></Button>

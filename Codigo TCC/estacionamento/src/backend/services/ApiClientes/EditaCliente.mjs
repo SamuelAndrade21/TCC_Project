@@ -1,4 +1,4 @@
-import BancoParking from "../server.mjs";
+import BancoParking from "../../server.mjs";
 
 export class EditaCliente {
     static async handle(nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, cliente_id, callback){

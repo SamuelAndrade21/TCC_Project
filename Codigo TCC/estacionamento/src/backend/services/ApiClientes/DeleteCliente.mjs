@@ -1,4 +1,4 @@
-import BancoParking from "../server.mjs";
+import BancoParking from "../../server.mjs";
 
 export class DeleteCliente {
     static async handle(cliente_id, callback){
