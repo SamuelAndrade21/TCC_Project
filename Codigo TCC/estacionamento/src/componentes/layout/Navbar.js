@@ -1,9 +1,10 @@
 //impor dos links
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
+
 
 
 //Import do use state
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 //import dos componentes do sidebar
 import {
@@ -19,13 +20,20 @@ import {
 import { FaChartBar,FaBars,FaCar,FaTimes,FaUsers } from "react-icons/fa";
 import { FiHome, FiLogOut} from "react-icons/fi";
 import { BiCog } from "react-icons/bi";
-
+import { MdSpaceDashboard } from "react-icons/md";
 //import das páginas
 import "react-pro-sidebar/dist/css/styles.css";
 import styles from './Navbar.module.css';
 
 const Navbar = () => {
-  
+  const navigate = useNavigate()
+
+  function handleLogout(){
+    if(localStorage.getItem("token")){
+        localStorage.removeItem("token")
+        window.location.replace('http://localhost:3000')
+    }
+  }
     //criacao do hook e state inicial
     const [menuCollapse, setMenuCollapse] = useState(false)
 
@@ -55,21 +63,21 @@ const Navbar = () => {
           <SidebarContent >
             <Menu >
                   
-              <MenuItem  active={true} icon={<FiHome fontSize= "17px" />}>
-              <Link to={"/"}>Página Inicial</Link>
+              <MenuItem  active={true} icon={<MdSpaceDashboard fontSize= "17px" />}>
+              <Link to={"/dashboard"}>Dashboard</Link>
               </MenuItem>
 
               
               <MenuItem icon={<FaCar fontSize= "17px"  />}>
-               <Link to={"/Garagem"}>Garagem</Link> 
+               <Link to={"/garagem"}>Garagem</Link> 
               </MenuItem>
 
               <MenuItem icon={<FaChartBar fontSize= "17px"  />}>
-               <Link to={"/Relatorios"}>Relatórios</Link> 
+               <Link to={"/relatorios"}>Relatórios</Link> 
               </MenuItem>
 
               <MenuItem icon={<FaUsers fontSize= "17px"  />}>
-              <Link to={"/Clientes"}>Clientes</Link> 
+              <Link to={"/clientes"}>Clientes</Link> 
               </MenuItem>
 
               <MenuItem icon={<BiCog fontSize= "17px"  />}>
@@ -80,7 +88,7 @@ const Navbar = () => {
           </SidebarContent>
           <SidebarFooter>
             <Menu>
-              <MenuItem icon={<FiLogOut fontSize= "17px"  />}>Sair</MenuItem>
+              <MenuItem icon={<FiLogOut fontSize= "17px"  />}><Link onClick={handleLogout}>Sair</Link></MenuItem>
             </Menu>
           </SidebarFooter>
         </ProSidebar>

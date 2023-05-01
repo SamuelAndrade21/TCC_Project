@@ -13,8 +13,6 @@ import { api } from "../../apiClient.mjs";
 function Login() {
 
     const navigate = useNavigate()
-    const [email, setEmail] = useState('')
-    const [ senha,setSenha ] = useState('')
     const [ veiculo,setVeiculo ] = useState('')
     const [ placa,setPlaca ] = useState('')
     const [ modelo,setModelo ] = useState('')
@@ -87,13 +85,7 @@ function Login() {
                 placeholder={'Email'}>
                 </Input>
 
-                <Input 
-                handleChange={(e) =>{setSenha(e.target.value)}}
-                value={senha}
-                type={'password'}
-                icon ={<HiLockClosed/>}
-                placeholder = {'Senha'}>
-                </Input> 
+     
 
                 <Input 
                 handleChange={(e) =>{setVeiculo(e.target.value)}}

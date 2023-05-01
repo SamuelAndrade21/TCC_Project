@@ -104,3 +104,64 @@
     box-shadow: 0px -2px 84px -12px #27AE60;
     transition: .7s;
 }
+
+.btnSub{
+    height: 60px;
+    position: absolute;
+    width: 444px;
+    right: 28px;
+    border: 3px transparent;
+    background: transparent;
+    z-index: 1000;
+}
+
+.btnSub:active{
+    border: 3px solid #27AE60;
+}
+
+.containerLista{
+    justify-content: center;
+    height: 60px;
+    align-items: center;
+    padding-right: 35px;
+    display: flex;
+    border-top:2px solid #27AE60 ;
+    border-bottom:2px solid #27AE60 ;
+    transition: all 0.7s;
+}
+
+.containerLista:nth-child(2n){
+    background-color:#505050;
+}
+
+.containerLista:hover{
+    background-color: #27ae5f88;
+    transition: all 0.7s;
+}
+
+.listMensalistas{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    margin: 0;
+    list-style: none;
+    height: 60px;
+    align-items: center;
+}
+
+.listMensalistas li{
+    padding: 0;
+    margin: 0;
+    pointer-events: none;
+}
+
+
+.listMensalistas:hover{
+    cursor: pointer;
+}
+
+.sliderDiv{
+    height: 350px;
+    overflow-y: auto;
+}
+

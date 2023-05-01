@@ -3,15 +3,17 @@ import Clientes from './componentes/pages/Clientes';
 import Relatorios from './componentes/pages/Relatorios';
 import Garagem from './componentes/pages/Garagem';
 import Footer from './componentes/layout/Footer';
-import Pagina_inicial from './componentes/pages/Pagina_Incial'; 
+import Pagina_inicial from './componentes/pages/Dashboard'; 
 import PageNotFound from './componentes/pages/PageNotFound';
 import Login from './componentes/elements/login/login';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import Cadastrar from './componentes/elements/cadastro/cadastro';
+import Dashboard from './componentes/pages/Dashboard';
 
 
 function App() {
+  
 
 
   return (
@@ -19,30 +21,29 @@ function App() {
     <div>
      
     
+    
+      <Router>
+      
+      <ToastContainer/>
 
-    <Router>
+      <Routes>
+      
+     
+          <Route path='/garagem' element ={<Garagem/>}/>
+          <Route path='/clientes' element ={<Clientes/>}/>
+          <Route path='/relatorios' element ={<Relatorios/>}/>  
+          <Route path='/cadastrar' element ={<Cadastrar/>}/>
+          <Route exact path = "/" element = {<Login />}/>
+          <Route path = "/dashboard" element = {<Dashboard />}/>
+          <Route path='*' element={<Navigate to='/404' />} />
+          <Route path='/404' element ={<PageNotFound/>}/>
+  
+      </Routes>
     
-    <ToastContainer/>
-
-    <Routes>
-    
-    <Route exact path = "/" element = {<Login/>}/>
-    <Route  path='/Garagem' element ={<Garagem/>}/>
-    <Route path='/Clientes' element ={<Clientes/>}/>
-    <Route path='/Relatorios' element ={<Relatorios/>}/>
-    <Route path='*' element={<Navigate to='/404' />} />
-    <Route path='/cadastrar' element ={<Cadastrar/>}/>
-    <Route path='/404' element ={<PageNotFound/>}/>
-
-    
-
-    
-    
-    </Routes>
-   
-    </Router>
-    
-    <Footer/>
+      </Router>
+      
+      <Footer/>
+     
     </div>
     
     

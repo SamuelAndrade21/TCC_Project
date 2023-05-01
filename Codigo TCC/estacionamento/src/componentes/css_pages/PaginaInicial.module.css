@@ -1,6 +1,279 @@
-.pageHome{
+
+.container{
+    display: flex;
+    flex-direction: row;
+    width:100%;
+    height: 100%;
+    text-align: center;
+    background-color: #161717;
+    position: absolute;
+    align-items: center;
+}
+
+.bodyDashboard h3{
+    text-align: right;
+    margin-right: 20px;
+}
+
+.bodyDashboard h1{
+    text-align: left;
+    margin-left: 160px;
+}
+
+
+.bodyDashboard span{
+    padding: 5px;
+}
+
+.bodyDashboard{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+}
+
+.bodyCaixas{
+    width: 90%;
+    height: 90%;
+    margin: 0 auto;
+    padding: 0px 150px 0 150px;
+    text-align: start;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    overflow-y: auto;
+}
+
+.caixa{
+    width: 205px;
     display: flex;
     justify-content: center;
+    margin: 15px;
+    height: 205px;
+    border: 2px solid #FFFFFF;
+    border-radius: 33px;
+    box-shadow: 6px 8px 16px 16px rgba(0, 0, 0, 0.25);
+}
+
+.btnAddict{
+    border: none;
+    color: white;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 190px;
+    align-items: center;
+    width: 100%;
+    border-radius: 33px;
+}
+
+.btnCaixa p{
+    font-size: 20px;
+    margin-top: 180px;
+    position: absolute;
+}
+
+.btnCaixa{
+    background-color:#27AE60 ;
+    border: none;
+    color: white;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border-radius: 30px;
+    background-image: url('../../componentes/assets/cash-machine.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 120px;
+    padding:0;
+    transition: 0.5s;
+}
+
+.editCaixa{
+    display: none;
+}
+
+
+.btnCaixa:hover .editCaixa{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: white;
+    height: 250px;
+    padding: 0;
+    width: 550px;
+    background: rgb(245,245,245);
+    background: linear-gradient(90deg, rgba(245,245,245,0.004639355742296902) 0%, rgba(20,20,20,0.36982968369829683) 0%);
+    justify-content: space-around;
+    border-radius: 30px;
+}
+
+
+.editCaixa button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    height: 70px;
+    width: 70px;
+    border: none;
+    color: white;
+    font-family: 'Josefin Sans';
+    font-size: 20px;
+}
+
+.spanIconOpen{
+    font-size: 50px;
+    color: rgb(0, 20, 75);
+    transition: .3s;
+}
+
+.spanIconOpen:hover{
+    transform: scale(1.3);
+    transition: .3s;
+}
+
+.spanIconClose{
+    font-size: 50px;
+    color: rgb(75, 0, 0);
+    transition: .3s;
+}
+
+.spanIconClose:hover{
+    transform: scale(1.3);
+    transition: .3s;
+}
+
+.ModalCaixa{
+    height: 320px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    padding: 10px;
+    transform: translate(-50%, -50%);
+    width: 320px;
+    background: #171918;
+    box-shadow: 7px 12px 31px 9px rgba(0, 0, 0, 0.82);
+    border-radius: 20px;
+}
+
+.btnCloseModal{
+    transition: .3s;
+    width: 65px;
+    border: 3px solid transparent;
+    background-color: #D22E2E;
+    font-size: 40px;
+    align-items: center;
+    display: flex;
+    color: white;
+    justify-content: center;
+    height: 65px;
+    border-radius: 50%;
+    left: 135px;
+    top: -80px;
+    position: absolute;
+}
+
+.btnCloseModal:hover{
+    border: 3px solid white;
+    transition: .3s;
+}
+
+.dataInput{
+    outline: none;
+    text-align: end;
+    padding: 5px;
+    height: 30px;
+    border: none;
+    font-family: 'Karla';
+    font-weight: 400;
+    font-size: 18px;
+    font-weight: 100;
+    line-height: 18px;
+    letter-spacing: 0em;
+    border-radius: 3px;
+    cursor: not-allowed;
+}
+
+.ModalCaixa h4{
+    margin-top: 40px;
+    font-size: 19px;
+    margin-right: 50px;
+}
+
+.infoValues{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content:space-between;
+}
+
+.values{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content:space-between;
+}
+
+.gaveta{
+    width: 120px;
+    height: 29px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    text-align: end;
+    color: #171918;
+    font-family: 'Karla';
+    font-weight: 400;
+    font-size: 15px;
+    font-weight: 100;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: right;
+    
+}
+
+.caixaID{
+    cursor: not-allowed;
+    width: 80px;
     text-align: center;
-    margin: 0 auto;
+    margin-right: 19px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-family: 'Karla';
+    font-weight: 400;
+    font-size: 15px;
+    font-weight: 100;
+    line-height: 18px;
+    letter-spacing: 0em;
+}
+
+.labelGaveta{
+    position: absolute;
+    color: #171918;
+    margin-top: 6px;
+    margin-left: 5px;
+    font-family: 'Karla';
+    font-weight: 400;
+    font-size: 18px;
+    font-weight: 100;
+    line-height: 18px;
+    letter-spacing: 0em;
+}
+
+.btnAbrirCaixa{
+    margin-top: 60px;
+    height: 40px;
+    border-radius: 11px;
+    border: none;
+    font-size: 18px;
+    color: white;
+    background-color: #27AE60;
+    font-family: 'Josefin Sans';
 }

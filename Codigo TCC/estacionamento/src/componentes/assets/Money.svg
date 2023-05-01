@@ -1,0 +1,15 @@
+<svg version="1.1" id="Icons" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;}
+	.st1{fill:none;stroke:#000000;stroke-width:2;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st2{fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st3{fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;}
+	.st4{fill:none;stroke:#000000;stroke-width:2;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:3;}
+</style>
+<rect x="3" y="9" class="st1" width="26" height="14" id="id_109" style="stroke: rgb(255, 255, 255);"></rect>
+<circle class="st1" cx="16" cy="16" r="4" id="id_110" style="stroke: rgb(255, 255, 255);"></circle>
+<path class="st1" d="M7,9c0,2.2-1.8,4-4,4" id="id_111" style="stroke: rgb(255, 255, 255);"></path>
+<path class="st1" d="M3,19c2.2,0,4,1.8,4,4" id="id_112" style="stroke: rgb(255, 255, 255);"></path>
+<path class="st1" d="M25,9c0,2.2,1.8,4,4,4" id="id_113" style="stroke: rgb(255, 255, 255);"></path>
+<path class="st1" d="M29,19c-2.2,0-4,1.8-4,4" id="id_114" style="stroke: rgb(255, 255, 255);"></path>
+</svg>

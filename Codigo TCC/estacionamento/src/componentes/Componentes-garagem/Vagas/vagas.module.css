@@ -21,8 +21,16 @@
     flex-direction: column;
 }
 
+
+
 .ListContainer ul:nth-child(2n){
     background-color: #505050;
+}
+
+.ListContainer ul:hover{
+    transition: all 0.3s;
+    background-color: #27AE60;
+    cursor: pointer;
 }
 
 .headerList{
@@ -67,6 +75,7 @@
 }
 
 .ListClient li{
+    pointer-events: none;
     /* border: 1px solid white; */
     display: flex;
     justify-content: center;
@@ -90,10 +99,22 @@ article{
 .conatinerButton{
     display: flex;
     flex-direction: row;
-    justify-content:flex-start;
+    justify-content:space-between;
     margin: 0;
     padding: 0;
     margin-top: 30px;
+}
+
+.Listbtn{
+    display: flex;
+}
+
+.selectOptions{
+    outline: none;
+    border-radius: 10px;
+    padding: 5px 5px;
+    font-size: 0.9rem;
+    font-family:'Josefin Sans' ;
 }
 
 .btnVendas{
@@ -163,3 +184,140 @@ article{
     border-radius: 10px;
   }
   
+
+  /*Modal*/
+
+
+  .containerModal{
+    display: flex;
+    flex-direction: column;
+    height: 520px;
+    width: 454px;
+    background-color: #191B1A;
+    box-shadow: 5px 4px 49px 15px rgba(0, 0, 0, 0.83);
+    border-radius: 27px;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    position: absolute;
+
+}
+.containerBtn{
+    position: absolute;
+    justify-content: flex-start;
+    margin: 5px;
+}
+
+.btnClose{
+    color: red;
+    font-size: 2.8rem;
+    border: none;
+    padding: 0;
+    margin: 5px;
+    background-color: transparent;
+}
+
+.labelInput{
+    font-size: 1.8rem;
+}
+
+.labelInput input{
+    background: #FFFFFF;
+    outline: none;
+    border: none;
+    height: 25px;
+    margin-left: 10px;
+    width: 200px;
+    padding: 4px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-size: x-large;
+    font-family: 'Josefin Sans';
+    text-align: right;
+    box-shadow: inset 3px 5px 10px rgba(0, 0, 0, 0.48);
+}
+
+.containerModal small{
+    font-size: 1.0rem;
+}
+
+.pagamentos  {
+   height: 60px;
+   width: 70px;
+   align-items: center;
+   display: flex;
+   justify-content: center;
+   margin: 10px;
+}
+
+.bodyPayments{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0;
+    width: 250px;
+    margin-left: 100px;
+}
+
+
+.btnPagamento{
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+}
+
+
+.credito{
+    transition: .1s all;
+    border: 3px solid transparent;
+    background-image: url('../../assets/Credit-card.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 3.5rem;
+    border-radius: 15px;
+}
+
+.debito{
+    transition: .1s all;
+    border: 3px solid transparent;
+    background-image: url('../../assets/Debit-card.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 3.5rem;
+    border-radius: 15px;
+}
+
+.money{
+    transition: .1s all;
+    border: 3px solid transparent;
+    background-image: url('../../assets/Money (2).svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 3.5rem;
+    border-radius: 15px;
+}
+
+.pix{
+    transition: .1s all;
+    border: 3px solid transparent;
+    background-image: url('../../assets/pix.svg');
+    color: white;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 3.3rem;
+    border-radius: 15px;
+}
+
+.btnSend{
+    background-color: #27AE60;
+    width: 200px;
+    height: 40px;
+    margin: 10px auto;
+    font-family: 'Josefin Sans';
+    border: none;
+    font-size: 1.3rem;
+    color: white;
+}
+

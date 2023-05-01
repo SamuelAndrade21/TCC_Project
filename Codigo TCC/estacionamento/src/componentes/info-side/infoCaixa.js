@@ -1,6 +1,14 @@
 import  styles from  './stylesInfos/infosCaixa.module.css'
+import { Buffer } from 'buffer';
 
-function  Caixa(){
+
+function  Caixa({Data,cliente}){
+   const token =  localStorage.getItem("token")
+   const base64Url = token.split('.')[1];
+   const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+   const decoded = JSON.parse(Buffer.from(base64, 'base64').toString('utf-8'));
+   const funcionarioNome = decoded.user[0].nome 
+   const funcionarioID = decoded.user[0].funcionario_id
 
     const Print = () =>{     
         let printContents = document.getElementById('printCaixa').innerHTML;
@@ -18,25 +26,24 @@ function  Caixa(){
 
         <div className={styles.iconCaixa}>
            <ul className={styles.valuesUser}>
-            <li value = "text">Funcionário:<span>[valueFuncionario]</span></li>
-            <li value = "number">Identificador:<span>[valueIdentificador]</span></li>
+            <li value = "text">Funcionário:<span>{funcionarioNome}</span></li>
+            <li value = "number">Identificador:<span>{funcionarioID}</span></li>
            </ul> 
         </div>
 
         <div id='printCaixa'>
         <div className={styles.infosComprovante}>
-           <p>[valueEmpresa]</p> 
           <p id='phone'><span>[valuePhone]</span></p> 
         </div>
         <hr></hr>
         <div className={styles.infoCliente}>
             <ul className='infoCaixaLista'>
                 <li className={styles.infoCaixaLista}>Data de lancamento:</li>
-                <li className={styles.infoCaixaLista}><span>[valuePhone]</span></li>
+                <li className={styles.infoCaixaLista}><span id='data'>{Data}</span></li>
                 <li className={styles.infoCaixaLista}>Endereco:</li>
                 <li className={styles.infoCaixaLista}><span>[valueEndereco]</span></li>
-                <li className={styles.infoCaixaLista}>Total:</li>
-                <li className={styles.infoCaixaLista}><span>[valueTotal]</span></li>
+                <li className={styles.infoCaixaLista}>Cliente:</li>
+                <li className={styles.infoCaixaLista}><span id='cliente'>{cliente}</span></li>
             </ul>
             </div>
             <hr></hr>

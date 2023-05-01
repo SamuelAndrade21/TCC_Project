@@ -2,11 +2,11 @@ import BancoParking from '../../server.mjs'
 import { promisify } from 'util'
 
  
-  export  class TotalVendas{
+  export  class ListaVendasSF{
 
         static async handle(){
            const connection = await BancoParking.connect()
-           let sql = "SELECT  f.nome,SUM(vc.valor_total) as soma FROM venda_cabecalho vc INNER JOIN funcionario f ON vc.id_funcionario = f.funcionario_id WHERE vc.situacao = 'F' GROUP BY  f.nome"
+           let sql = "SELECT vc.venda_cabecalho_id,vc.data_hora_venda,c.nome,c.placa,c.veiculo,vc.valor_recebido FROM venda_cabecalho vc INNER JOIN cliente c on vc.id_cliente = c.cliente_id  where vc.situacao = 'F'"
            const query = promisify(connection.query).bind(connection)
            const results = await query(sql)
            connection.end();

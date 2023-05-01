@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState,useEffect } from "react";
 import {toast} from 'react-toastify'
 import Input from "../../elements/inputs/Input";
 import styles from './login.module.css' 
@@ -6,15 +6,31 @@ import { HiIdentification,HiLockClosed } from "react-icons/hi";
 import Button from "../buttons/Button.js";
 import Link from "../links/Links.js";
 import Logo from '../../assets/LogoPrincipal.png'
-import { useNavigate } from 'react-router-dom'
+import { Routes, useNavigate } from 'react-router-dom'
 import { api } from "../../apiClient.mjs";
 
 
-function Login() {
 
+function Login() {
+    
     const navigate = useNavigate()
     const [email, setEmail] = useState('')
     const [ senha,setSenha ] = useState('')
+
+    
+    useEffect(() =>{ 
+        const token = localStorage.getItem("token")
+       
+        if(token){
+            navigate('/dashboard');
+        } 
+        else{
+            navigate('/');
+            }
+    
+        },[])
+        
+   
 
     async function singIn(e){
         e.preventDefault() 
@@ -27,11 +43,14 @@ function Login() {
           } 
 
                 try{
-
-                const response =  (await api).post('/login',{
+                 const response =  (api).post('/login',{
                     email,
                     senha      
                 })
+
+               const token = (await response).data.token
+                
+               localStorage.setItem("token",token)   
 
                 if((await response).status === undefined){
                     toast.error("Email/Senha inválido!")
@@ -49,8 +68,9 @@ function Login() {
                         progress: undefined,
                         theme: "dark",
                     })    
-
-                    navigate('/Garagem')   
+                    
+                    window.location.replace('http://localhost:3000/dashboard')
+                    
                 }     
 
             }
@@ -61,12 +81,9 @@ function Login() {
                     autoClose:2000
                 })
                 console.log(err)
-            }
-          
+            }       
 
 }
-
-    
 
     return(
         <div className={styles.bodyLogin}>
