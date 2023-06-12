@@ -2,9 +2,23 @@ import styles from '../css_pages/Garagem.module.css';
 import Vagas from '../Componentes-garagem/Vagas/VagasGestao.js';
 import InfosCar from '../info-side/InfosCar';
 import Navbar from '../layout/Navbar';
-import { useState,useRef } from 'react';
+import { useState,useRef,useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'
 
 function Garagem(){
+  const navigate = useNavigate()
+    
+    useEffect(() =>{ 
+        const token = localStorage.getItem("token")
+       
+        if(token){
+            navigate('/garagem');
+        } 
+        else{
+            navigate('/');
+            }
+    
+        },[])
   const [hide,setHide] = useState(false) 
   const newContainer = useRef(null)
 

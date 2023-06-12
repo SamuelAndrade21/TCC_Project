@@ -17,7 +17,7 @@ function Vagas(){
     const [ tipo, setTipo ] = useState(null)
     const [ valor,setValor ] = useState('')
     const [ troco,setTroco ] = useState('')
-
+    const caixa_id = localStorage.getItem("caixa")
     const color1 = useRef(null)
     const color2 = useRef(null)
     const color3 = useRef(null)
@@ -140,7 +140,7 @@ function Vagas(){
         {
             const valor_venda = valor
             const valor_total = parseFloat(valor)
-            let valor_recebido = parseFloat(valor_total) + parseFloat(troco)
+            let valor_recebido = parseFloat(valor_total) - parseFloat(troco)
             const id_tipo_pag = tipo
             console.log(valor_recebido)
             
@@ -151,6 +151,12 @@ function Vagas(){
                 troco,
                 id_tipo_pag,
                 venda_cabecalho_id
+            })
+
+            const valor_diferenca = valor_recebido
+            const attGaveta = (api).put('/caixa/upando-gaveta',{
+                valor_diferenca,
+                caixa_id
             })
 
             setModalVisible(false)
@@ -322,33 +328,50 @@ function Vagas(){
                         <div className={styles.bodyPayments}>
                         {
                                 <>
-                                <div ref={color1} onClick={(e) =>{setTipo(pix.tipo_pag_id);stayClick(e)}}  className={styles.pix} key={pix.tipo_pag_id}>
-                                    <div className={styles.pagamentos}>
-                                        <button className={styles.btnPagamento}></button>
+                                {pix &&(
+                                    <div ref={color1} onClick={(e) =>{setTipo(pix.tipo_pag_id);stayClick(e)}}  className={styles.pix} key={pix.tipo_pag_id}>
+                                        <div className={styles.pagamentos}>
+                                            <button className={styles.btnPagamento}></button>
+                                        </div>
+                                        <small>{pix.nome_pagamento}</small>
                                     </div>
-                                    <small>{pix.nome_pagamento}</small>
-                                </div>
+                                )
 
-                                <div ref={color2} onClick={(e) =>{setTipo(dinheiro.tipo_pag_id);stayClick(e)}} className={styles.money} key={dinheiro.tipo_pag_id}>
-                                    <div className={styles.pagamentos}>
-                                        <button className={styles.btnPagamento}></button>
+                                } 
+
+                                {dinheiro &&(
+                                    <div ref={color2} onClick={(e) =>{setTipo(dinheiro.tipo_pag_id);stayClick(e)}} className={styles.money} key={dinheiro.tipo_pag_id}>
+                                        <div className={styles.pagamentos}>
+                                            <button className={styles.btnPagamento}></button>
+                                        </div>
+                                        <small>{dinheiro.nome_pagamento}</small>
                                     </div>
-                                    <small>{dinheiro.nome_pagamento}</small>
-                                </div>
+                                )
 
-                                <div ref={color3} onClick={(e) =>{setTipo(debito.tipo_pag_id);stayClick(e)}} className={styles.debito} key={debito.tipo_pag_id}>
-                                    <div className={styles.pagamentos}>
-                                        <button className={styles.btnPagamento}></button>
+                                }
+
+                                {debito &&(
+                                    <div ref={color3} onClick={(e) =>{setTipo(debito.tipo_pag_id);stayClick(e)}} className={styles.debito} key={debito.tipo_pag_id}>
+                                        <div className={styles.pagamentos}>
+                                            <button className={styles.btnPagamento}></button>
+                                        </div>
+                                        <small>{debito.nome_pagamento}</small>
                                     </div>
-                                    <small>{debito.nome_pagamento}</small>
-                                </div>
+                                )
 
-                                <div ref={color4} onClick={(e) =>{setTipo(credito.tipo_pag_id);stayClick(e)}}  className={styles.credito} key={credito.tipo_pag_id}>
+                                }
+                              
+                                {credito &&(
+                                <div ref={color4} onClick={(e) =>{setTipo(credito.tipo_pag_id);stayClick(e)}}  className={styles.credito} key={credito?.tipo_pag_id}>
                                     <div className={styles.pagamentos}>
                                         <button className={styles.btnPagamento}></button>
                                     </div>
                                     <small>{credito.nome_pagamento}</small>
                                 </div>
+                            )
+
+                            }
+                                
                                 </>
                        
                         }  

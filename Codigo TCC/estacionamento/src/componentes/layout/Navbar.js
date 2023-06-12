@@ -81,7 +81,7 @@ const Navbar = () => {
               </MenuItem>
 
               <MenuItem icon={<BiCog fontSize= "17px"  />}>
-               Configurações
+              <Link to={"/configuracoes"}>Configurações</Link> 
               </MenuItem>
 
             </Menu>

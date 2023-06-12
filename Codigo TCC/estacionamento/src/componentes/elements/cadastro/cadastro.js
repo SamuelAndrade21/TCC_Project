@@ -56,7 +56,7 @@ export default function Cadastrar(){
                     theme: "dark",
                 })    
 
-                navigate('/Garagem')   
+                navigate('/')   
                 }     
      
             catch(err){

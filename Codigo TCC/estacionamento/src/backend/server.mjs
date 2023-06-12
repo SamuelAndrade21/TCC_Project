@@ -36,9 +36,14 @@ import { ListandoCaixas } from './services/ApiCaixa/ListandoCaixas.mjs';
 import { UpandoCaixa } from './services/ApiCaixa/UpandoCaixa.mjs';
 import { UpandoFechamento } from './services/ApiCaixa/UpandoFechamentoCaixa.mjs';
 import { CriandoNovoCaixa } from './services/ApiCaixa/CriandoNovoCaixa.mjs';
-
-
-const Password = process.JWT_PASSWORD = 'e2efee2f862e3751023a8149a21a2bb1'
+import { ListaTodosOsPagamentos } from './services/ApiPagamentos/ListaTodosOsPagamentos.mjs';
+import { MudaPagamentoParaF } from '../backend/services/ApiPagamentos/MudaPagamentoParaF.mjs'
+import { MudaPagamentoParaV } from './services/ApiPagamentos/MudaPagamentoParaV.mjs';
+import { ListaFuncionario } from './services/ApiFuncionario/ListaFuncionario.mjs';
+import { UpandoSenha } from './services/ApiFuncionario/UpandoSenha.mjs';
+import { UpandoDadosFuncionario } from './services/ApiFuncionario/UpandoDadosFuncionario.mjs';
+import { CadastraClienteMensal } from './services/ApiClientes/CadastraClienteMensal.mjs';
+import { AlteraValorGaveta } from './services/ApiClientes/AlteraValorGaveta.mjs';
 
 
 const app = express()
@@ -108,19 +113,19 @@ router.post('/cliente/temporario/cadastro', async function(req,res){
 })
     
 //- Cadastro de Cliente
-router.post('/cliente/cadastro',
+router.post('/cliente/mensalistas/cadastro',
 async function(req, res){
     try{
-        const {nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, situacao } = req.body
+        const {nome, celular, email, cpf, veiculo, modelo, placa, cor_veiculo, cidade_estado,valor_mensalidade } = req.body
 
-    await CadastroDeCliente.handle(nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, situacao, function (nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, situacao ){
+     CadastraClienteMensal.handleWithCallback(nome, celular, email, cpf, veiculo, modelo, placa, cor_veiculo, cidade_estado,valor_mensalidade, function (nome, celular, email, cpf, veiculo, modelo, placa, cor_veiculo, cidade_estado,valor_mensalidade ){
 
-        const cliente = { nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, situacao }
+        const cliente = { nome, celular, email, cpf, veiculo, modelo, placa, cor_veiculo, cidade_estado,valor_mensalidade }
         res.send(cliente)
     })
     }
      catch(error) {
-        console.log(erro)
+        console.log(error)
         res.status(400).send("Erro na parte de Cadastro de Cliente")
    }
 
@@ -128,30 +133,40 @@ async function(req, res){
 })
 
 // //- Exclusão de Cliente
-router.delete('/cliente/deleta',
+router.post('/cliente/mensalistas/deleta',
     async function(req, res){
-        const { cliente_id } = req.body
-
-        await DeleteCliente.handle(cliente_id, function (cliente_id){
-
-            const deleta = { cliente_id}
-            res.json(deleta)
-
+        try{
+            const {cliente_id} = await req.body
+    
+        DeleteCliente.handleWithCallback(cliente_id, function (cliente_id ){
+    
+            res.send(cliente_id)
         })
+        }
+         catch(error) {
+            console.log(error)
+            res.status(400).send("Erro ao deletar cliente")
+       }
     }
 )
 
 // - Edição de Cliente
-router.put ('/cliente/editar',
+router.put('/cliente/mensalistas/editar',
     async function(req, res){
-        const {nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, cliente_id} = req.body
+        try{
+            const {nome, celular, email, cpf, veiculo, modelo, placa, cor_veiculo, cidade_estado, valor_mensalidade, cliente_id} = await req.body
 
-        await EditaCliente.handle(nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, cliente_id, function (nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, cliente_id){
-
-            const EditaCliente = { nome, celular, email, cpf, rg, veiculo, modelo, placa, cor_veiculo, ano, cidade_estado, bairro, rua, numero_casa, valor_mensalidade, cliente_id}
-
-            res.send(EditaCliente)
-        })
+             EditaCliente.handleWithCallback(nome, celular, email, cpf, veiculo, modelo, placa, cor_veiculo, cidade_estado, valor_mensalidade, cliente_id, function (nome, celular, email, cpf, veiculo, modelo, placa, cor_veiculo, cidade_estado, valor_mensalidade, cliente_id){
+    
+                const EditaCliente = { nome, celular, email, cpf, veiculo, modelo, placa, cor_veiculo, cidade_estado, valor_mensalidade, cliente_id}
+    
+                res.status(200).send(EditaCliente)
+            })
+        }
+        catch(err){
+            res.status(500).json("Error", err.message)
+        }
+      
     }
 )
 
@@ -187,7 +202,7 @@ router.get('/estacionamento/clientes-mensalistas', async function(req,res){
     }
 })
 
-router.get('/estacionamento/vendas',EstaAutenticado, async function(req,res,next){
+router.get('/estacionamento/vendas', async function(req,res,next){
         try
         {
             ListaVendas.handleWithCallback((results) =>{
@@ -274,6 +289,7 @@ router.post('/estacionamento/cancela-venda',async function(req,res){
 })
 
 
+
 // - API DE PAGAMENTOS
 
 // LISTA TODOS OS PAGAMENTOS COM SITUAÇÃO IGUAL A 'V'
@@ -289,6 +305,55 @@ router.get('/estacionamento/pagamentos', async function(req,res){
         res.status(500).json("Error")
     }
 }) 
+
+// LISTA DE TODOS OS PAGAMENTOS
+
+router.get('/estacionamento/pagamentos/todos', async function(req,res){
+    try
+    {
+        ListaTodosOsPagamentos.handleWithCallback((results) =>{
+            res.status(200).json(results)
+        })
+    }
+    catch(err){
+        console.log(err)
+        res.status(500).json("Error")
+    }
+})
+
+// SETANDO A SITUAÇÃO DO PAGAMENTO PARA 'F'
+
+router.post('/estacionamento/pagamento/set-f', async function(req,res){
+    const { tipo_pag_id } = await req.body
+    try
+    {
+       MudaPagamentoParaF.handleWithCallback(tipo_pag_id, (tipo_pag_id) =>{
+        const updatePagamento = {tipo_pag_id}
+        res.status(200).send(updatePagamento)
+       })
+    }
+    catch(err){
+            console.log(err)
+            res.status(500).json("Error")
+    }
+})
+
+// SETANDO A SITUAÇÃO DO PAGAMENTO PARA 'V'
+
+router.post('/estacionamento/pagamento/set-v', async function(req,res){
+    const { tipo_pag_id } = await req.body
+    try
+    {
+       MudaPagamentoParaV.handleWithCallback(tipo_pag_id, (tipo_pag_id) =>{
+        const updatePagamento = {tipo_pag_id}
+        res.status(200).send(updatePagamento)
+       })
+    }
+    catch(err){
+            console.log(err)
+            res.status(500).json("Error")
+    }
+})
 
 router.post('/estacionamento',
     async function(req, res){
@@ -317,7 +382,7 @@ router.post('/estacionamento/detalhe',
 
 
 // API de Relatórios
-router.get('/relatorios/vendas-soma',EstaAutenticado, async function(req,res,next){
+router.get('/relatorios/vendas-soma', async function(req,res,next){
     try
     {
         TotalVendas.handleWithCallback((results) =>{
@@ -439,6 +504,76 @@ router.post('/caixa/criar-caixa',async function(req,res){
         })
     }
     catch(err){
+        console.log(err)
+        res.status(500).json("Error")
+    }
+})
+
+// UPDATE VALOR_GAVETA DO CAIXA
+
+router.put('/caixa/upando-gaveta',async function(req,res){
+    const { valor_diferenca,caixa_id } = await req.body
+    try
+    {
+        AlteraValorGaveta.handleWithCallback(valor_diferenca,caixa_id,(valor_diferenca,caixa_id)=>{
+            const updateGaveta = {valor_diferenca,caixa_id}
+            res.status(200).send(updateGaveta)
+        })
+    }
+    catch(err){
+        console.log(err)
+        res.status(500).json("Error")
+    }
+})
+
+
+//API DE FUNCIONARIO
+router.put('/funcionario/atualizar/senha',async function(req,res,next){
+    const { funcionario_id,senha } = await req.body
+    const senhaHash = await hash(senha,8) 
+    console.log(senhaHash,funcionario_id)
+
+    try{
+        UpandoSenha.handleWithCallback(funcionario_id,senhaHash,(funcionario_id,senhaHash) =>{
+            const updateFuncionario = {funcionario_id,senhaHash}
+            res.send(updateFuncionario)
+        })
+    }
+    catch(err){
+        res.status(400).json({"error":"Erro ao acessar"})
+    }
+
+})
+
+router.put('/funcionario/atualizar/dados',async function(req,res){
+    const { funcionario_id,nome,email,telefone } =  await req.body
+
+    try
+    {
+        UpandoDadosFuncionario.handleWithCallback(funcionario_id,nome,email,telefone,(funcionario_id,nome,email,telefone)=>{
+            const dadosFuncionario = {funcionario_id,nome,email,telefone}
+            res.status(200).send(dadosFuncionario)
+        })
+    }
+    catch(err){
+        res.status(400).json({"error":"Erro ao acessar" });
+    }
+})
+
+router.post('/funcionario/lista-funcionarios', async function(req,res){
+    const { funcionario_id } = await req.body
+    console.log(funcionario_id)
+    try
+    {
+        ListaFuncionario.handleWithCallback(funcionario_id,(funcionario_id) =>{
+            const funcionario = {funcionario_id}
+            console.log(funcionario_id)
+            res.status(200).send(funcionario)
+        })
+        
+    }
+    catch(err)
+    {
         console.log(err)
         res.status(500).json("Error")
     }

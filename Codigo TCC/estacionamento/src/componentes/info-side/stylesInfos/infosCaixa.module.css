@@ -129,3 +129,13 @@ button{
 .prnterBtn{
     margin-left: 82%;
 }
+
+.ticket{
+    padding-bottom: 10px;
+    color: #171717;
+    background-color: rgb(255, 251, 247);
+}
+
+.ticket li{
+    color: #171717;
+}

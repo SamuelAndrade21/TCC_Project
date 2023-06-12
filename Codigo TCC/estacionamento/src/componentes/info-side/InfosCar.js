@@ -78,12 +78,14 @@ const nameCLiente =  valuesArray[0]?.[1]
 
 async function handleClientUser(e){
     e.preventDefault()
-    
- 
-
 
     try
     {
+
+        if(id_caixa === null){
+            toast.warning("Adicione um caixa antes!")
+            return
+        }
         
         const responseVenda = (api).post('/estacionamento/vendas-cadastro',
         {
@@ -147,7 +149,10 @@ async function handleClientUser(e){
       
         const id_cliente = (await response).data.nomeTemp.insertId
      
-
+        if(id_caixa === null){
+            toast.warning("Adicione um caixa antes!")
+            return
+        }
         const reponseVenda = (await api).post('/estacionamento/vendas-cadastro',
         {
             id_funcionario,

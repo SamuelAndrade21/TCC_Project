@@ -1,0 +1,183 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    width:100%;
+    height: 100%;
+    text-align: center;
+    background-color: #161717;
+    position: absolute;
+    align-items: center;
+}
+
+.bodyConfiguracoes{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.bodyConfiguracoes h1{
+    text-align: start;
+}
+
+.bodyConfiguracoes h3{
+    text-align: start;
+    margin-left: 25px;
+}
+
+.formBody{
+    margin-left: 25px;
+    display: flex;
+    flex-direction: column;
+    width: 565px;
+    height: 350px;
+    padding: 20px;
+    background-color: #E7DFDF;
+    border-radius: 15px;
+    color: rgb(18, 18, 18);
+}
+
+.inputInfo{
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: row;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgb(22, 22, 22);
+    margin: 16px 0px 16px 0px;
+}
+
+.inputInfo input{
+    width: 350px;
+    margin-left: 10px;
+    font-family: 'Josefin Sans';
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.buttonsContainer{
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btnDados{
+    display: flex;
+    justify-content: space-around;
+    background-color: transparent;
+    color: #0045F8;
+    border:2px solid #0045F8;
+    width: 165px;
+    border-radius: 4px;
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 15px;
+}
+
+.btnSenha{
+    display: flex;
+    justify-content: space-around;
+    background-color: transparent;
+    color: #FB1919;
+    border:2px solid #FB1919;
+    width: 165px;
+    border-radius: 4px;
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 15px;
+}
+
+.formasPagamento{
+    padding: 15px;
+    width: 510px;
+    height: 300px;
+    margin-left: 25px;
+}
+
+.pagamentos{
+    line-height: 35px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid white;
+}
+
+.roundSliderContainer{
+    width: 60px;
+    height: 28px;
+    background-color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+}
+
+.roundSlider{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 20px;
+    height: 20px;
+    border-radius: 40px;
+    background-color:rgb(210, 18, 18) ;
+    top: 4px;
+    left: 2.8px;
+    position: absolute;
+}
+
+.InputChange{
+    transition: all .7s;
+    display: none;
+}
+
+
+.roundSlider{
+    transition: all .7s;
+}
+
+.InputChange:checked ~ .roundSlider {
+    transform:translateX(34px);
+    background-color: #0b9909;
+    transition: all .7s;
+}
+
+.btnConfirm{
+    display: flex;
+    justify-content: space-around;
+    background-color: transparent;
+    color: #08871b;
+    border:2px solid #08871b;
+    width: 165px;
+    border-radius: 4px;
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 15px;
+}
+
+.newSenhaInput input{
+    outline: none;
+    background-color: transparent;
+    border:none;
+    border-bottom: 1px solid black;
+    padding: 2px;
+    font-family: 'Josefin Sans';
+    width: 200px;
+}

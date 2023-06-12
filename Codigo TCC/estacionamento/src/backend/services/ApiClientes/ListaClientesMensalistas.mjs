@@ -6,7 +6,7 @@ import { promisify } from 'util'
 
         static async handle(){
            const connection = await BancoParking.connect()
-           let sql = "select cliente_id,nome,celular,veiculo,placa from cliente where valor_mensalidade > 0 "
+           let sql = "select cliente_id,nome,celular,veiculo,placa,email,cpf,modelo,placa,cor_veiculo,cidade_estado from cliente where valor_mensalidade > 0 "
            const query = promisify(connection.query).bind(connection)
            const results = await query(sql)
            connection.end();
@@ -14,6 +14,7 @@ import { promisify } from 'util'
            if(results.length === 0){
             throw new Error("Nenhum valor encontrado")
            }
+           console.log(results)
            
            return results
           

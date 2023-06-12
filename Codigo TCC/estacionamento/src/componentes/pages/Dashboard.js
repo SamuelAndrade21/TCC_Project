@@ -2,13 +2,24 @@ import styles from '../css_pages/PaginaInicial.module.css'
 import Navbar from '../layout/Navbar';
 import { Buffer } from 'buffer';
 import { useEffect,useState,useRef } from 'react';
+import { useNavigate } from 'react-router-dom'
 import { api } from '../apiClient.mjs';
 import { TbLockOpen,TbLockOpenOff } from "react-icons/tb";
 import { FiX } from "react-icons/fi";
 import { toast } from 'react-toastify';
 
-function Dashboard(){  
+function Dashboard(){ 
+    const navigate = useNavigate() 
     useEffect(() =>{
+
+        const token = localStorage.getItem("token")
+    
+        if(token){
+            navigate('/dashboard');
+        } 
+        else{
+            navigate('/');
+            }
         async function execute(){
             const response = (api).get('caixa/lista-caixas')
             const arrayResponse = Object.values((await response).data)

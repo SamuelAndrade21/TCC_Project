@@ -34,6 +34,7 @@
     "react-router-dom": "^6.4.1",
     "react-scripts": "5.0.1",
     "react-toastify": "^9.1.1",
+    "smart-webcomponents-react": "^15.2.2",
     "stream": "^0.0.2",
     "styled-components": "^5.3.6",
     "type": "^1.0.0",

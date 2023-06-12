@@ -2,11 +2,11 @@ import BancoParking from '../../server.mjs'
 import { promisify } from 'util'
 
  
-  export  class ListaPagamentosAtivos{
+  export  class ListaTodosOsPagamentos{
 
         static async handle(){
            const connection = await BancoParking.connect()
-           let sql = "SELECT tipo_pag_id,nome_pagamento,permite_troco,situacao FROM tipo_pagamento WHERE situacao = 'V'"
+           let sql = "SELECT tipo_pag_id,nome_pagamento,permite_troco,situacao FROM tipo_pagamento "
            const query = promisify(connection.query).bind(connection)
            const results = await query(sql)
            connection.end();

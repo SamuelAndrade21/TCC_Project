@@ -9,6 +9,10 @@ function  Caixa({Data,cliente}){
    const decoded = JSON.parse(Buffer.from(base64, 'base64').toString('utf-8'));
    const funcionarioNome = decoded.user[0].nome 
    const funcionarioID = decoded.user[0].funcionario_id
+   const telefoneTicket = localStorage.getItem("ticket")
+   const endereco = localStorage.getItem("endereco")
+   const caixa = localStorage.getItem("caixa")
+
 
     const Print = () =>{     
         let printContents = document.getElementById('printCaixa').innerHTML;
@@ -27,13 +31,14 @@ function  Caixa({Data,cliente}){
         <div className={styles.iconCaixa}>
            <ul className={styles.valuesUser}>
             <li value = "text">Funcionário:<span>{funcionarioNome}</span></li>
-            <li value = "number">Identificador:<span>{funcionarioID}</span></li>
+            <li value = "number">Caixa:<span>{caixa ? caixa : "Nenhum caixa aberto"}</span></li>
            </ul> 
         </div>
 
+      <div className={styles.ticket}>
         <div id='printCaixa'>
         <div className={styles.infosComprovante}>
-          <p id='phone'><span>[valuePhone]</span></p> 
+          <p id='phone'><span>System Parking - {telefoneTicket}</span></p> 
         </div>
         <hr></hr>
         <div className={styles.infoCliente}>
@@ -41,13 +46,15 @@ function  Caixa({Data,cliente}){
                 <li className={styles.infoCaixaLista}>Data de lancamento:</li>
                 <li className={styles.infoCaixaLista}><span id='data'>{Data}</span></li>
                 <li className={styles.infoCaixaLista}>Endereco:</li>
-                <li className={styles.infoCaixaLista}><span>[valueEndereco]</span></li>
+                <li className={styles.infoCaixaLista}><span>{endereco}</span></li>
                 <li className={styles.infoCaixaLista}>Cliente:</li>
                 <li className={styles.infoCaixaLista}><span id='cliente'>{cliente}</span></li>
             </ul>
             </div>
             <hr></hr>
             </div>
+        </div>
+
             <div className={styles.prnterBtn}>
             <button className={styles.btnPrint} type="button" onClick={Print}> </button>
             </div>

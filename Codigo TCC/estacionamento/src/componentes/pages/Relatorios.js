@@ -2,6 +2,7 @@ import { Chart } from "react-google-charts";
 import styles from '../css_pages/relatorios.module.css';
 import Navbar from "../layout/Navbar";
 import { useEffect } from "react";
+import { useNavigate } from 'react-router-dom'
 import { api } from "../apiClient.mjs";
 import { useState } from "react";
 import pdfMake from "pdfmake/build/pdfmake";
@@ -31,7 +32,18 @@ const timeString = `${hours}:${minutes}:${seconds}`;
 
 const dateTimeString = `${dateString} ${timeString}`;
 
+const navigate = useNavigate()
+
     useEffect(()=>{
+        const token = localStorage.getItem("token")
+    
+        if(token){
+            navigate('/relatorios');
+        } 
+        else{
+            navigate('/');
+            }
+        
         async function vendasAPI(){
             const response = (api).get('/relatorios/vendas-soma')
             setDatas((await response).data)

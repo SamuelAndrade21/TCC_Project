@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import Cadastrar from './componentes/elements/cadastro/cadastro';
 import Dashboard from './componentes/pages/Dashboard';
+import Configuracoes  from './componentes/pages/Configuracoes';
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path='/cadastrar' element ={<Cadastrar/>}/>
           <Route exact path = "/" element = {<Login />}/>
           <Route path = "/dashboard" element = {<Dashboard />}/>
+          <Route path = "/configuracoes" element = {<Configuracoes />}/>
           <Route path='*' element={<Navigate to='/404' />} />
           <Route path='/404' element ={<PageNotFound/>}/>
   
